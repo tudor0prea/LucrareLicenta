@@ -1,0 +1,55 @@
+﻿@model SafeWheel3.Models.Anunt
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Anunt</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Marca" class="control-label"></label>
+        <input asp-for="Marca" class="form-control" />
+        <span asp-validation-for="Marca" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Pret" class="control-label"></label>
+        <input asp-for="Pret" class="form-control" />
+        <span asp-validation-for="Pret" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataFabricatiei" class="control-label"></label>
+        <input asp-for="DataFabricatiei" class="form-control" />
+        <span asp-validation-for="DataFabricatiei" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DealerId" class="control-label"></label>
+        <select asp-for="DealerId" asp-items="ViewBag.Dealers" class="form-control">
+            <option value="">Selectați dealerul</option>
+        </select>
+        <span asp-validation-for="DealerId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Image" class="control-label"></label>
+        <input asp-for="Image" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+        <input class="form-control" type="file" name="AnuntImage" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+
+<a asp-action="Index">Back to List</a>

@@ -1,0 +1,55 @@
+﻿@model SafeWheel3.Models.Anunt
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Anunt</h1>
+
+<form enctype="multipart/form-data" asp-controller="Anunt" asp-action="Create">
+
+    <div class="form-group">
+        <label asp-for="Marca" class="control-label"></label>
+        <input asp-for="Marca" class="form-control" />
+        <span asp-validation-for="Marca" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Pret" class="control-label"></label>
+        <input asp-for="Pret" class="form-control" />
+        <span asp-validation-for="Pret" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataFabricatiei" class="control-label"></label>
+        <input asp-for="DataFabricatiei" class="form-control" />
+        <span asp-validation-for="DataFabricatiei" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+@* @if (Model.Marca != null) *@
+@* //{
+   // @Html.DropDownListFor(m => m.DealerId, new SelectList(Model.Marca, "Value", "Text"), "Selectati marca", new { @class = "form-control" })
+//} *@
+
+    <div class="form-group">
+        <label asp-for="DealerId" class="control-label"></label>
+        <select asp-for="DealerId" asp-items="ViewBag.Dealers" class="form-control">
+            <option value="">Selectați dealerul</option>
+        </select>
+        <span asp-validation-for="DealerId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <input class="form-control" type="file" name="AnuntImage" multiple/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+
+
+</form>
