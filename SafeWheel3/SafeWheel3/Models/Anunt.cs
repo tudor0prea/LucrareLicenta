@@ -22,11 +22,9 @@ public class Anunt
 
 
     [Required(ErrorMessage = " Data fabricației este obligatorie.")]
-    [DataType(DataType.DateTime)]
-    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-    public DateTime? DataFabricatiei { get; set; }
-
-
+    [DataType(DataType.Date)]
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd/MM/yyyy}")]
+    public DateOnly? DataFabricatiei { get; set; }
 
     [Required(ErrorMessage = "Dealer-ul trebuie selectat")]
 

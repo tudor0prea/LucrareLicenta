@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "95dz3PywnFBBRndnlP0FYf/CHvGUIN7N1aXziNm2kh9NOnKtw29TVUn+AAF1mdD88mLC4mX9ZeRh9j58D86FMQ==",
+  "dgSpecHash": "i0MyklkqiMEIKd55F3BwXBdsMbGtyke18JhxntznM15Tk2dqesB5AHzaedxLHDVgFlA/6oBbM4d7tj5/06VOpQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tudor\\OneDrive\\Desktop\\Grafica\\SafeWheel3\\SafeWheel3\\SafeWheel3.csproj",
+  "projectFilePath": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\SafeWheel3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tudor\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Tudor\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

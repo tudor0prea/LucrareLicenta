@@ -6,6 +6,14 @@
 
 <h1>Index</h1>
 
+<form method="GET">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search topics or keywords" name="search"
+               value="@ViewBag.SearchString">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </div>
+</form>
+
 @if (ViewBag.SuccessMessage != null)
 {
     <div class="alert alert-success">

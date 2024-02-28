@@ -17,99 +17,99 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SafeWheel3
 build_property.RootNamespace = SafeWheel3
-build_property.ProjectDir = C:\Users\Tudor\OneDrive\Desktop\Grafica\SafeWheel3\SafeWheel3\
+build_property.ProjectDir = C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Tudor\OneDrive\Desktop\Grafica\SafeWheel3\SafeWheel3
+build_property.MSBuildProjectDirectory = C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Areas/Identity/Pages/Account/Register.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Areas/Identity/Pages/_ViewImports.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Anunt/Create.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Anunt/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW51bnRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Anunt/Delete.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Anunt/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW51bnRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Anunt/Details.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Anunt/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW51bnRcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Anunt/Edit.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Anunt/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW51bnRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Anunt/Index.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Anunt/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW51bnRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Home/Index.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Home/Privacy.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Marca/Create.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Marca/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Shared/Error.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Users/Edit.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Users/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Users/Index.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Users/Show.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Users/Show.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcU2hvdy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/_ViewImports.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/_ViewStart.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Tudor/OneDrive/Desktop/Grafica/SafeWheel3/SafeWheel3/Views/Shared/_Layout.cshtml]
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-rx7z09msgj

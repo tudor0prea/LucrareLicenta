@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tudor\\OneDrive\\Desktop\\Grafica\\SafeWheel3\\SafeWheel3\\SafeWheel3.csproj": {}
+    "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\SafeWheel3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tudor\\OneDrive\\Desktop\\Grafica\\SafeWheel3\\SafeWheel3\\SafeWheel3.csproj": {
+    "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\SafeWheel3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tudor\\OneDrive\\Desktop\\Grafica\\SafeWheel3\\SafeWheel3\\SafeWheel3.csproj",
+        "projectUniqueName": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\SafeWheel3.csproj",
         "projectName": "SafeWheel3",
-        "projectPath": "C:\\Users\\Tudor\\OneDrive\\Desktop\\Grafica\\SafeWheel3\\SafeWheel3\\SafeWheel3.csproj",
+        "projectPath": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\SafeWheel3.csproj",
         "packagesPath": "C:\\Users\\Tudor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tudor\\OneDrive\\Desktop\\Grafica\\SafeWheel3\\SafeWheel3\\obj\\",
+        "outputPath": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

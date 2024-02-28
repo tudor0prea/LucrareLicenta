@@ -89,14 +89,42 @@ namespace SafeWheel3.Controllers
         // GET: Anunt
         public async Task<IActionResult> Index()
         {
+            var anunturile = db.Anunturi.Include("Dealer").Include("User").OrderBy(a => a.DataFabricatiei);
+
+            var search = "";
+
+            if (Convert.ToString(HttpContext.Request.Query["search"])!=null)
+            {
+                search = Convert.ToString(HttpContext.Request.Query["search"]).Trim();
+                List<int> anunturiIds=db.Anunturi.Where(
+                    an => an.Marca.Contains(search) || an.Description.Contains(search) 
+                    ).Select(a => a.Id).ToList();
+
+                anunturile = db.Anunturi.Where(ann => anunturiIds.Contains(ann.Id))
+                    //.Include("Id").Include("Marca").Include("DataFabricatiei").Include("Pret")
+                    .Include("Dealer")
+                    .OrderBy(a=>a.DataFabricatiei);
+            }
+
             // Verificați dacă există un mesaj de succes în TempData
             if (TempData.ContainsKey("SuccessMessage"))
             {
                 ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
             }
 
-            var anunturi = await db.Anunturi.Include(a => a.Dealer).ToListAsync();
-            return View(anunturi);
+            // var anunturi = await db.Anunturi.Include(a => a.Dealer).ToListAsync();
+            // return View(anunturi);
+           /* if (search != "")
+            
+                {
+                    ViewBag.PaginationBaseUrl = "/Anunt/Index/?search=" + search + "&page";
+                } 
+                else
+                {
+                    ViewBag.PaginationBaseUrl = "/Anunt/Index/?page";
+                }
+            */
+            return View(anunturile);
         }
 
 
