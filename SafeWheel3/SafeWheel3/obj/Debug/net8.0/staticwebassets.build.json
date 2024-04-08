@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hX8lFnU1mtorO292wTxkiAb6J0NsnkBfWoXynCG7W1E=",
+  "Hash": "IgsRQju9PuMvp6HB0q6nKSDhrL5AFlo+bKL/GiQLSpw=",
   "Source": "SafeWheel3",
   "BasePath": "_content/SafeWheel3",
   "Mode": "Default",
@@ -1269,6 +1269,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\wwwroot\\images\\DaciiZapada.jpg",
+      "SourceId": "SafeWheel3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\wwwroot\\",
+      "BasePath": "_content/SafeWheel3",
+      "RelativePath": "images/DaciiZapada.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\DaciiZapada.jpg"
     },
     {
       "Identity": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\wwwroot\\images\\DaciiZapadax.jpg",

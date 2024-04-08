@@ -10,8 +10,23 @@
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search topics or keywords" name="search"
                value="@ViewBag.SearchString">
+        <label for="minPrice">Preț minim:</label>
+        <input type="number" id="minPrice" name="minPrice" value="@ViewBag.minPrice"  /> <!-- Adaugă valoarea minimă curentă din ViewBag -->
+        <br />
+        <label for="maxPrice">Preț maxim:</label>
+        <input type="number" id="maxPrice" name="maxPrice" value="@ViewBag.maxPrice"  /> <!-- Adaugă valoarea maximă curentă din ViewBag -->
+        <br />
+
+        <label for="minData">Data fabricatiei minima:</label>
+        <input type="date" id="minData" name="minData" value="@ViewBag.minData" /> <!-- Adaugă valoarea minimă curentă din ViewBag -->
+        <br />
+        <label for="maxData">Data fabricatiei maxima:</label>
+        <input type="date" id="maxData" name="maxData" value="@ViewBag.maxData" /> <!-- Adaugă valoarea minimă curentă din ViewBag -->
+
         <button class="btn btn-outline-success" type="submit">Search</button>
     </div>
+
+    <br />
 </form>
 
 @if (ViewBag.SuccessMessage != null)

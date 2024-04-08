@@ -105,6 +105,94 @@ namespace SafeWheel3.Controllers
                     .Include("Dealer")
                     .OrderBy(a=>a.DataFabricatiei);
             }
+            var filteredAnunturi = anunturile;
+
+
+        //Filtrare pentru pret
+            Int32 maxPrice = 999999999;
+            Int32 minPrice = 0;
+          List<int> anunturiIdsMAX = new List<int>();
+          List<int> anunturiIdsMIN = new List<int>();
+
+            // ---------- minim
+            if (Convert.ToString(HttpContext.Request.Query["minPrice"]) == "")
+                minPrice = 0;
+            else
+                if (Convert.ToString(HttpContext.Request.Query["minPrice"]) != null)
+                     minPrice = Convert.ToInt32(HttpContext.Request.Query["minPrice"]);
+
+       
+            
+            anunturiIdsMIN = db.Anunturi.Where(
+               an => an.Pret >= minPrice
+               ).Select(a => a.Id).ToList();
+
+            // ----------maxim
+            
+            if (Convert.ToString(HttpContext.Request.Query["maxPrice"]) == "")
+                maxPrice = 999999999;
+            else
+                 if (Convert.ToString(HttpContext.Request.Query["maxPrice"]) != null)
+                    maxPrice = Convert.ToInt32(HttpContext.Request.Query["maxPrice"]);
+
+            anunturiIdsMAX = db.Anunturi.Where(
+                an => an.Pret <= maxPrice
+                ).Select(a => a.Id).ToList();
+
+            
+            // ---- rezultat
+          filteredAnunturi = filteredAnunturi.Where(ann => anunturiIdsMIN.Contains(ann.Id) && anunturiIdsMAX.Contains(ann.Id))
+              .Include("Dealer").OrderBy(a => a.DataFabricatiei);
+
+
+        //Filtrare pentru Data
+        DateOnly minData = new DateOnly(1950,1,1);
+        DateOnly maxData = new DateOnly(2025,1,1);
+        List<int> anunturiIdsMAXD = new List<int>();
+        List<int> anunturiIdsMIND = new List<int>();
+            // -- minima
+            if (Convert.ToString(HttpContext.Request.Query["minData"]) == "")
+                minData = new DateOnly(1950, 1, 1);
+            else
+                if (Convert.ToString(HttpContext.Request.Query["minData"]) != null)
+            {
+                DateTime dateTime = Convert.ToDateTime(HttpContext.Request.Query["minData"]);
+                minData = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day);
+            }
+            anunturiIdsMIND = db.Anunturi.Where(
+               an => an.DataFabricatiei >= minData
+               ).Select(a => a.Id).ToList();
+
+            // --- maxima
+            if (Convert.ToString(HttpContext.Request.Query["maxData"]) == "")
+                maxData = new DateOnly(2025, 1, 1);
+            else
+               if (Convert.ToString(HttpContext.Request.Query["maxData"]) != null)
+            {
+                DateTime dateTime = Convert.ToDateTime(HttpContext.Request.Query["maxData"]);
+                maxData = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day);
+            }
+            anunturiIdsMAXD = db.Anunturi.Where(
+             an => an.DataFabricatiei <= maxData
+             ).Select(a => a.Id).ToList();
+            
+            // ------- rezultat
+            filteredAnunturi = filteredAnunturi.Where(ann => anunturiIdsMIND.Contains(ann.Id) && anunturiIdsMAXD.Contains(ann.Id))
+              .Include("Dealer").OrderBy(a => a.DataFabricatiei);
+            
+            
+            /*
+            if (minManufacturingDate.HasValue)
+            {
+                filteredAnunturi = filteredAnunturi.Where(a => a.DataFabricatiei.HasValue && a.DataFabricatiei.Value.Date >= minManufacturingDate.Value.Date);
+            }
+
+            if (maxManufacturingDate.HasValue)
+            {
+                filteredAnunturi = filteredAnunturi.Where(a => a.DataFabricatiei.HasValue && a.DataFabricatiei.Value.Date <= maxManufacturingDate.Value.Date);
+            }
+
+            */
 
             // Verificați dacă există un mesaj de succes în TempData
             if (TempData.ContainsKey("SuccessMessage"))
@@ -124,7 +212,7 @@ namespace SafeWheel3.Controllers
                     ViewBag.PaginationBaseUrl = "/Anunt/Index/?page";
                 }
             */
-            return View(anunturile);
+            return View(filteredAnunturi);
         }
 
 
