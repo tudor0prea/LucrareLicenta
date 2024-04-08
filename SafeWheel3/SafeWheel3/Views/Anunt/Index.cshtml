@@ -23,6 +23,56 @@
         <label for="maxData">Data fabricatiei maxima:</label>
         <input type="date" id="maxData" name="maxData" value="@ViewBag.maxData" /> <!-- Adaugă valoarea minimă curentă din ViewBag -->
 
+
+        
+
+
+
+        <label class="small-text" for="dealer">&nbsp;&nbsp; Marca: &nbsp;&nbsp;</label>
+
+                    <select style="background-color:mintcream;" class="selector-afisare" name="dealer" id="dealer">
+
+                        @if (ViewBag.ChosenDealer != -1) //TINEM CONT DE domeniu
+                        {
+                            @foreach (var dom in ViewBag.Dealers) // 2 for uri pentru ca varianta aleasa sa fie cea buna in drop down
+                            {
+                                @if (Convert.ToString(dom.Value) == Convert.ToString(ViewBag.ChosenDealer))
+                                {
+                                    <option value="@(dom.Value)">@dom.Text</option>
+                                    break;
+                                }
+                            }
+
+                            @foreach (var dom in ViewBag.Dealers){
+                                @if (Convert.ToString(dom.Value) != Convert.ToString(ViewBag.ChosenDealer))
+                                {
+                                    <option value="@(dom.Value)">@dom.Text</option>
+                                }
+                            }
+
+                            <option value="-1">-</option> // trebuie sa ma pot intoarce la a nu tine cont de domeniu
+
+                        }
+                        else{
+                            <option value="-1">-</option>
+
+                            @foreach (var dom in ViewBag.Dealers)
+                            {
+                                <option value="@(dom.Value)">@dom.Text</option>
+                            }
+                        }
+           
+                    </select>
+        
+        
+        
+                 </div>
+
+
+
+
+
+
         <button class="btn btn-outline-success" type="submit">Search</button>
     </div>
 

@@ -93,63 +93,65 @@ namespace SafeWheel3.Controllers
 
             var search = "";
 
-            if (Convert.ToString(HttpContext.Request.Query["search"])!=null)
+            if (Convert.ToString(HttpContext.Request.Query["search"]) != null)
             {
                 search = Convert.ToString(HttpContext.Request.Query["search"]).Trim();
-                List<int> anunturiIds=db.Anunturi.Where(
-                    an => an.Marca.Contains(search) || an.Description.Contains(search) 
+                List<int> anunturiIds = db.Anunturi.Where(
+                    an => an.Marca.Contains(search) || an.Description.Contains(search)
                     ).Select(a => a.Id).ToList();
 
                 anunturile = db.Anunturi.Where(ann => anunturiIds.Contains(ann.Id))
                     //.Include("Id").Include("Marca").Include("DataFabricatiei").Include("Pret")
                     .Include("Dealer")
-                    .OrderBy(a=>a.DataFabricatiei);
+                    .OrderBy(a => a.DataFabricatiei);
             }
             var filteredAnunturi = anunturile;
 
 
-        //Filtrare pentru pret
-            Int32 maxPrice = 999999999;
+            //Filtrare pentru pret
+            Int32 maxPrice = 1000000;
             Int32 minPrice = 0;
-          List<int> anunturiIdsMAX = new List<int>();
-          List<int> anunturiIdsMIN = new List<int>();
+            List<int> anunturiIdsMAX = new List<int>();
+            List<int> anunturiIdsMIN = new List<int>();
 
             // ---------- minim
             if (Convert.ToString(HttpContext.Request.Query["minPrice"]) == "")
                 minPrice = 0;
             else
                 if (Convert.ToString(HttpContext.Request.Query["minPrice"]) != null)
-                     minPrice = Convert.ToInt32(HttpContext.Request.Query["minPrice"]);
+                minPrice = Convert.ToInt32(HttpContext.Request.Query["minPrice"]);
 
-       
-            
+            ViewBag.minPrice = minPrice; 
+
             anunturiIdsMIN = db.Anunturi.Where(
                an => an.Pret >= minPrice
                ).Select(a => a.Id).ToList();
 
             // ----------maxim
-            
+
             if (Convert.ToString(HttpContext.Request.Query["maxPrice"]) == "")
-                maxPrice = 999999999;
+                maxPrice = 1000000;
             else
                  if (Convert.ToString(HttpContext.Request.Query["maxPrice"]) != null)
-                    maxPrice = Convert.ToInt32(HttpContext.Request.Query["maxPrice"]);
+                maxPrice = Convert.ToInt32(HttpContext.Request.Query["maxPrice"]);
+
+            ViewBag.maxPrice = maxPrice;
 
             anunturiIdsMAX = db.Anunturi.Where(
                 an => an.Pret <= maxPrice
                 ).Select(a => a.Id).ToList();
 
-            
+
             // ---- rezultat
-          filteredAnunturi = filteredAnunturi.Where(ann => anunturiIdsMIN.Contains(ann.Id) && anunturiIdsMAX.Contains(ann.Id))
-              .Include("Dealer").OrderBy(a => a.DataFabricatiei);
+            filteredAnunturi = filteredAnunturi.Where(ann => anunturiIdsMIN.Contains(ann.Id) && anunturiIdsMAX.Contains(ann.Id))
+                .Include("Dealer").OrderBy(a => a.DataFabricatiei);
 
 
-        //Filtrare pentru Data
-        DateOnly minData = new DateOnly(1950,1,1);
-        DateOnly maxData = new DateOnly(2025,1,1);
-        List<int> anunturiIdsMAXD = new List<int>();
-        List<int> anunturiIdsMIND = new List<int>();
+            //Filtrare pentru Data
+            DateOnly minData = new DateOnly(1950, 1, 1);
+            DateOnly maxData = new DateOnly(2025, 1, 1);
+            List<int> anunturiIdsMAXD = new List<int>();
+            List<int> anunturiIdsMIND = new List<int>();
             // -- minima
             if (Convert.ToString(HttpContext.Request.Query["minData"]) == "")
                 minData = new DateOnly(1950, 1, 1);
@@ -159,6 +161,8 @@ namespace SafeWheel3.Controllers
                 DateTime dateTime = Convert.ToDateTime(HttpContext.Request.Query["minData"]);
                 minData = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day);
             }
+
+            //ViewBag.minData = minData;   
             anunturiIdsMIND = db.Anunturi.Where(
                an => an.DataFabricatiei >= minData
                ).Select(a => a.Id).ToList();
@@ -172,27 +176,41 @@ namespace SafeWheel3.Controllers
                 DateTime dateTime = Convert.ToDateTime(HttpContext.Request.Query["maxData"]);
                 maxData = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day);
             }
+
+            //ViewBag.maxData = maxData; 
             anunturiIdsMAXD = db.Anunturi.Where(
              an => an.DataFabricatiei <= maxData
              ).Select(a => a.Id).ToList();
-            
+
             // ------- rezultat
             filteredAnunturi = filteredAnunturi.Where(ann => anunturiIdsMIND.Contains(ann.Id) && anunturiIdsMAXD.Contains(ann.Id))
               .Include("Dealer").OrderBy(a => a.DataFabricatiei);
-            
-            
-            /*
-            if (minManufacturingDate.HasValue)
-            {
-                filteredAnunturi = filteredAnunturi.Where(a => a.DataFabricatiei.HasValue && a.DataFabricatiei.Value.Date >= minManufacturingDate.Value.Date);
-            }
 
-            if (maxManufacturingDate.HasValue)
-            {
-                filteredAnunturi = filteredAnunturi.Where(a => a.DataFabricatiei.HasValue && a.DataFabricatiei.Value.Date <= maxManufacturingDate.Value.Date);
-            }
 
-            */
+
+            // Filtrare dupa marca
+
+            ViewBag.Dealers = GetAllDealers();
+
+            int chosenDealer = -1;
+            ViewBag.ChosenDealer = -1;
+
+
+
+
+            List<int> anunturiIdsDealer = new List<int>();
+
+            if (Convert.ToString(HttpContext.Request.Query["dealer"]) != null)
+            {
+                chosenDealer = Convert.ToInt16(HttpContext.Request.Query["dealer"]);
+                ViewBag.ChosenDealer = chosenDealer;
+                anunturiIdsDealer = db.Anunturi.Include("Dealer").Where(an => an.DealerId == chosenDealer).Select(a => a.Id).ToList();
+                filteredAnunturi = filteredAnunturi.Where(ann => anunturiIdsDealer.Contains(ann.Id)).Include("Dealer")
+                 .OrderBy(a => a.DataFabricatiei);
+
+            }
+            
+
 
             // Verificați dacă există un mesaj de succes în TempData
             if (TempData.ContainsKey("SuccessMessage"))
