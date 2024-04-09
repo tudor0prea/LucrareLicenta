@@ -147,6 +147,8 @@ namespace SafeWheel3.Controllers
                 .Include("Dealer").OrderBy(a => a.DataFabricatiei);
 
 
+
+
             //Filtrare pentru Data
             DateOnly minData = new DateOnly(1950, 1, 1);
             DateOnly maxData = new DateOnly(2025, 1, 1);
@@ -162,7 +164,7 @@ namespace SafeWheel3.Controllers
                 minData = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day);
             }
 
-            //ViewBag.minData = minData;   
+            ViewBag.minData = minData;   
             anunturiIdsMIND = db.Anunturi.Where(
                an => an.DataFabricatiei >= minData
                ).Select(a => a.Id).ToList();
@@ -177,7 +179,7 @@ namespace SafeWheel3.Controllers
                 maxData = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day);
             }
 
-            //ViewBag.maxData = maxData; 
+            ViewBag.maxData = maxData; 
             anunturiIdsMAXD = db.Anunturi.Where(
              an => an.DataFabricatiei <= maxData
              ).Select(a => a.Id).ToList();
@@ -200,7 +202,7 @@ namespace SafeWheel3.Controllers
 
             List<int> anunturiIdsDealer = new List<int>();
 
-            if (Convert.ToString(HttpContext.Request.Query["dealer"]) != null)
+            if (Convert.ToString(HttpContext.Request.Query["dealer"]) != "-1")
             {
                 chosenDealer = Convert.ToInt16(HttpContext.Request.Query["dealer"]);
                 ViewBag.ChosenDealer = chosenDealer;
@@ -209,11 +211,12 @@ namespace SafeWheel3.Controllers
                  .OrderBy(a => a.DataFabricatiei);
 
             }
-            
+            if (Convert.ToString(HttpContext.Request.Query["dealer"]) == null)
+                filteredAnunturi = db.Anunturi.Include("Dealer").OrderBy(a => a.DataFabricatiei);
 
 
-            // Verificați dacă există un mesaj de succes în TempData
-            if (TempData.ContainsKey("SuccessMessage"))
+                // Verificați dacă există un mesaj de succes în TempData
+                if (TempData.ContainsKey("SuccessMessage"))
             {
                 ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
             }
