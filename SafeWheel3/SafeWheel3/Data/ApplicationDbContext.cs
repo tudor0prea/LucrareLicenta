@@ -13,6 +13,8 @@ namespace SafeWheel3.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Anunt> Anunturi { get; set; }
         public DbSet<Marca> Marci { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
     }
 }
 

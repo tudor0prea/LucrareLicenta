@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SafeWheel3")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c481cf156aa89f96e43a74adc5ccf5ece1d752b6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb63fca5335dc4afb2a71827495e19b50550d2d3")]
 [assembly: System.Reflection.AssemblyProductAttribute("SafeWheel3")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SafeWheel3")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

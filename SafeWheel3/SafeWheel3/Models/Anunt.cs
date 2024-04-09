@@ -38,11 +38,18 @@ public class Anunt
         get; set;
     }
 
-    public virtual ApplicationUser User { get; set; }
+    //am adaugat UserID pentru a salva in string
+    public string? UserID { get; set; } // FK User
+    public virtual ApplicationUser? User { get; set; }
 
     public string Image { get; set; }
 
     public string Description { get; set; }
+
+
+
+
+    public virtual ICollection<Comment> Comments { get; set; }
 }
 
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -245,6 +246,10 @@ namespace SafeWheel3.Controllers
         {
             // Populate Dealers dropdown list
             Anunt anunt=new Anunt();
+            
+            //salvam id ul userului
+            anunt.UserID = _userManager.GetUserId(User);
+            
             anunt.Dealers = GetAllDealers();
             ViewBag.Dealers = new SelectList(db.Marci, "Id", "Nume");
             return View();
@@ -308,10 +313,14 @@ namespace SafeWheel3.Controllers
                     //db.Anunturi.Add(anunt);
                     //db.SaveChanges();
                 }
-            
-                
+
+
 
                 //UploadImage(anunt, AnuntImage);
+
+                //salvam id ul userului
+                anunt.UserID = _userManager.GetUserId(User);
+
                 db.Anunturi.Add(anunt);
                 await db.SaveChangesAsync();
 
@@ -429,6 +438,8 @@ namespace SafeWheel3.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -436,7 +447,7 @@ namespace SafeWheel3.Controllers
                 return NotFound();
             }
 
-            var anunt = await db.Anunturi
+            var anunt = await db.Anunturi.Include(a=> a.Comments)
                 .Include(a => a.Dealer)
                 .FirstOrDefaultAsync(a => a.Id == id);
 
@@ -444,9 +455,65 @@ namespace SafeWheel3.Controllers
             {
                 return NotFound();
             }
-
+            SetAccessRights();
             return View(anunt);
         }
+        
+
+
+
+
+        // Adaugarea unui comentariu asociat unui articol in baza de date
+        [HttpPost]
+        [Authorize(Roles = "Admin,Specialist")]
+        public IActionResult Details([FromForm] Comment comment)
+        {
+            comment.Date = DateTime.Now;
+            comment.UserId = _userManager.GetUserId(User);
+            comment.UserName = _userManager.GetUserName(User);
+
+            if (ModelState.IsValid)
+            {
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return Redirect("/Anunt/Details/" + comment.AnuntId);
+            }
+
+            else
+            {
+                Anunt art = db.Anunturi.Include("Dealer")
+                                         .Include("User")
+                                         .Include("Comments")
+                                         .Where(art => art.Id == comment.AnuntId)
+                                         .First();
+
+                //return Redirect("/Anunt/Details/" + comment.AnuntId);
+
+                SetAccessRights();
+              
+                return View(art);
+            }
+        }
+
+
+
+        private void SetAccessRights()
+        {
+            ViewBag.EsteAdmin = User.IsInRole("Specialist");
+
+            ViewBag.UserCurent = _userManager.GetUserId(User);
+
+            ViewBag.AfisareButoane = false;
+
+            if (User.IsInRole("Specialist") || User.IsInRole("Admin") )
+            {
+                ViewBag.AfisareButoane = true;
+            }
+
+
+        }
+
+
 
     }
 }
