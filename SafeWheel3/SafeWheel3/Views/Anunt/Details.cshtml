@@ -62,6 +62,12 @@
             <img src="@Url.Content(Model.Image)" alt="AnuntImage" class="img-fluid" />
         </dd>
 
+        @foreach (var imagePath in Model.ImagePaths)
+        {
+            <dd class="col-sm-2">
+                <img src="@Url.Content(imagePath)" alt="AnuntImage" class="img-fluid" />
+            </dd>
+        }
     </dl>
 </div>
 

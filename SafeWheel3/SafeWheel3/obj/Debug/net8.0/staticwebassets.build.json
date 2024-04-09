@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yDmxxGdN7ImdDAPPbhpBDZjPtrwgX1jXr9ODTSu6eKM=",
+  "Hash": "3ucDw1t8q+vjzjaAGxhW+4gXZfC2I5Gnzr+MKrb00eo=",
   "Source": "SafeWheel3",
   "BasePath": "_content/SafeWheel3",
   "Mode": "Default",
@@ -1271,6 +1271,25 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\wwwroot\\images\\Captură de ecran 2023-03-07 143426.png",
+      "SourceId": "SafeWheel3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\wwwroot\\",
+      "BasePath": "_content/SafeWheel3",
+      "RelativePath": "images/Captură de ecran 2023-03-07 143426.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Captură de ecran 2023-03-07 143426.png"
+    },
+    {
       "Identity": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\wwwroot\\images\\Captură de ecran 2023-03-07 143730.png",
       "SourceId": "SafeWheel3",
       "SourceType": "Discovered",
@@ -1288,6 +1307,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Captură de ecran 2023-03-07 143730.png"
+    },
+    {
+      "Identity": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\wwwroot\\images\\Captură de ecran 2023-03-07 170908.png",
+      "SourceId": "SafeWheel3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\wwwroot\\",
+      "BasePath": "_content/SafeWheel3",
+      "RelativePath": "images/Captură de ecran 2023-03-07 170908.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Captură de ecran 2023-03-07 170908.png"
     },
     {
       "Identity": "C:\\Users\\Tudor\\OneDrive\\Desktop\\LucrareLicenta\\SafeWheel3\\SafeWheel3\\wwwroot\\images\\Captură de ecran 2023-03-08 120703.png",

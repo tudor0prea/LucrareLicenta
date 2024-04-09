@@ -280,6 +280,8 @@ namespace SafeWheel3.Controllers
 
         //NOU
 
+
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Anunt anunt, IFormFile AnuntImage)
@@ -334,6 +336,90 @@ namespace SafeWheel3.Controllers
             ViewBag.Dealers = GetAllDealers();
             return View(anunt);
         }
+        */
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Anunt anunt, IFormFile AnuntImagee, List<IFormFile> AnuntImages)
+        {
+            ModelState.Clear();
+            if (ModelState.IsValid)
+            {
+                if (AnuntImagee.Length > 0)
+                {
+                    // Generam calea de stocare a fisierului
+                    var storagePath = Path.Combine(
+                        _env.WebRootPath, // Luam calea folderului wwwroot
+                        "images", // Adaugam calea folderului images
+                        AnuntImagee.FileName  //numele fisierului
+                        );
+
+                    // Uploadam fisierul la calea de storage
+                    using (var fileStream = new FileStream(storagePath, FileMode.Create))
+                    {
+                        await AnuntImagee.CopyToAsync(fileStream);
+                    }
+
+                    // General calea de afisare a fisierului care va fi stocata in baza de date
+                    var databaseFileName = "/images/" + AnuntImagee.FileName;
+                    anunt.Image = databaseFileName;
+                }
+                   
+                
+                
+                if (AnuntImages != null && AnuntImages.Count > 0)
+                {
+                    // Creează o listă pentru a stoca numele fișierelor imaginilor
+                    List<string> imagePaths = new List<string>();
+
+                    // Iterează prin fiecare imagine și încarc-o
+                    foreach (var AnuntImage in AnuntImages)
+                    {
+                        if (AnuntImage.Length > 0)
+                        {
+                            // Generează calea de stocare a fișierului
+                            var storagePath = Path.Combine(
+                                _env.WebRootPath, // Ia calea către folderul wwwroot
+                                "images", // Adaugă calea către folderul images
+                                AnuntImage.FileName // Numele fișierului
+                            );
+
+                            // Încarcă fișierul la calea de stocare
+                            using (var fileStream = new FileStream(storagePath, FileMode.Create))
+                            {
+                                await AnuntImage.CopyToAsync(fileStream);
+                            }
+
+                            // Adaugă calea fișierului la lista de căi
+                            var databaseFileName = "/images/" + AnuntImage.FileName;
+                            imagePaths.Add(databaseFileName);
+                        }
+                    }
+
+                    // Salvăm căile imaginilor în obiectul Anunt
+                    anunt.ImagePaths = imagePaths;
+                }
+
+                // Salvăm ID-ul utilizatorului
+                anunt.UserID = _userManager.GetUserId(User);
+
+                // Adăugăm anunțul în contextul bazei de date
+                db.Anunturi.Add(anunt);
+                await db.SaveChangesAsync();
+
+                // Adăugați un mesaj în TempData
+                TempData["SuccessMessage"] = "Anunțul a fost adăugat cu succes!";
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Dacă ModelState nu este valid, revenim la vizualizarea Create cu datele introduse
+            ViewBag.Dealers = GetAllDealers();
+            return View(anunt);
+        }
+
+
 
 
         // GET: Anunt/Edit/5

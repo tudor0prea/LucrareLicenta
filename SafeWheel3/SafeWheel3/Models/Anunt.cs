@@ -43,6 +43,8 @@ public class Anunt
     public virtual ApplicationUser? User { get; set; }
 
     public string Image { get; set; }
+    public List<string> ImagePaths { get; set; }
+
 
     public string Description { get; set; }
 
