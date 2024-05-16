@@ -1,0 +1,22 @@
+﻿@model SafeWheel3.Models.Anunt
+
+
+<div class="card-body">
+
+    <h3 class="card-title alert-success py-3 px-3 rounded-2">@Model.Marca</h3>
+
+    <div class="card-text">@Html.Raw(Model.Description)</div>
+
+    <div class="d-flex justify-content-between flex-row mt-5">
+
+        <div><i class="bi bi-globe"></i> @Model.Dealer.Nume</div>
+
+        <div><i class="bi bi-person"></i> @Model.User.UserName</div>
+
+       
+
+    </div>
+
+</div>
+
+

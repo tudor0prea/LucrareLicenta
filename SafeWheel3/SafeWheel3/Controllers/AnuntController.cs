@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SafeWheel3.Data;
 using SafeWheel3.Models;
 using System;
@@ -86,6 +87,52 @@ namespace SafeWheel3.Controllers
            
             return selectList;
         }
+
+
+
+        //ADAUGARE LA FAVORITE
+
+        [HttpPost]
+        public IActionResult AddBookmark([FromForm] AnuntBookmark anuntBookmark)
+        {
+            // Daca modelul este valid
+            if (ModelState.IsValid)
+            {
+                // Verificam daca avem deja articolul in colectie
+                if (db.AnuntBookmarks
+                    .Where(ab => ab.AnuntId == anuntBookmark.AnuntId)
+                    .Where(ab => ab.BookmarkId == anuntBookmark.BookmarkId)
+                    .Count() > 0)
+                {
+                    TempData["message"] = "Acest anunt este deja adaugat in colectie";
+                    TempData["messageType"] = "alert-danger";
+                }
+                else
+                {
+                    // Adaugam asocierea intre articol si bookmark 
+                    db.AnuntBookmarks.Add(anuntBookmark);
+                    // Salvam modificarile
+                    db.SaveChanges();
+
+                    // Adaugam un mesaj de success
+                    TempData["message"] = "Anuntul a fost adaugat in colectia selectata";
+                    TempData["messageType"] = "alert-success";
+                }
+
+            }
+            else
+            {
+                TempData["message"] = "Nu s-a putut adauga anuntul in colectie";
+                TempData["messageType"] = "alert-danger";
+            }
+
+            // Ne intoarcem la pagina articolului
+            return Redirect("/Anunt/Details/" + anuntBookmark.AnuntId);
+        }
+
+        // SFARSIT ADAUGARE LA FAVORITE
+
+
 
         // GET: Anunt
         public async Task<IActionResult> Index()
@@ -518,13 +565,24 @@ namespace SafeWheel3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var anunt = await db.Anunturi.FindAsync(id);
-            db.Anunturi.Remove(anunt);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+            Anunt anunt = db.Anunturi.Include("Comments").Where(anunt=>anunt.Id == id).First();
+            if (anunt.UserID == _userManager.GetUserId(User) || User.IsInRole("Admin"))
+            {
+                db.Anunturi.Remove(anunt);
+                db.SaveChanges();
+                TempData["message"] = "Anuntul a fost sters";
+                ViewBag.message = "Anuntul a fost sters";
+                return RedirectToAction("Index");
+            }
 
-        
+            else
+            {
+                TempData["message"] = "Nu aveti dreptul sa stergeti un anunt care nu va apartine";
+                ViewBag.message = "Nu aveti dreptul sa stergeti un anunt care nu va apartine";
+                return RedirectToAction("Index");
+            }
+            //return RedirectToAction(nameof(Index));
+        }
 
         public async Task<IActionResult> Details(int? id)
         {
@@ -533,7 +591,7 @@ namespace SafeWheel3.Controllers
                 return NotFound();
             }
 
-            var anunt = await db.Anunturi.Include(a=> a.Comments)
+            var anunt = await db.Anunturi.Include(a => a.Comments)
                 .Include(a => a.Dealer)
                 .FirstOrDefaultAsync(a => a.Id == id);
 
@@ -541,12 +599,14 @@ namespace SafeWheel3.Controllers
             {
                 return NotFound();
             }
+
+            // Adaugam bookmark-urile utilizatorului pentru dropdown
+            ViewBag.UserBookmarks = db.Bookmarks
+                                      .Where(b => b.UserId == _userManager.GetUserId(User))
+                                      .ToList();
             SetAccessRights();
             return View(anunt);
         }
-        
-
-
 
 
         // Adaugarea unui comentariu asociat unui articol in baza de date
@@ -557,6 +617,7 @@ namespace SafeWheel3.Controllers
             comment.Date = DateTime.Now;
             comment.UserId = _userManager.GetUserId(User);
             comment.UserName = _userManager.GetUserName(User);
+
 
             if (ModelState.IsValid)
             {
@@ -580,8 +641,10 @@ namespace SafeWheel3.Controllers
                 return View(art);
             }
         }
+        
+        
 
-
+        
 
         private void SetAccessRights()
         {

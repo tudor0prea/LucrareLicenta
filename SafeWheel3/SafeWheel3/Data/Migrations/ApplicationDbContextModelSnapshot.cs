@@ -184,7 +184,6 @@ namespace SafeWheel3.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePaths")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Marca")
@@ -205,6 +204,32 @@ namespace SafeWheel3.Data.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("Anunturi");
+                });
+
+            modelBuilder.Entity("SafeWheel3.Models.AnuntBookmark", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AnuntId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BookmarkId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("BookmarkDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id", "AnuntId", "BookmarkId");
+
+                    b.HasIndex("AnuntId");
+
+                    b.HasIndex("BookmarkId");
+
+                    b.ToTable("AnuntBookmarks");
                 });
 
             modelBuilder.Entity("SafeWheel3.Models.ApplicationUser", b =>
@@ -276,6 +301,28 @@ namespace SafeWheel3.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("SafeWheel3.Models.Bookmark", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Bookmarks");
                 });
 
             modelBuilder.Entity("SafeWheel3.Models.Comment", b =>
@@ -388,10 +435,38 @@ namespace SafeWheel3.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("SafeWheel3.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Anunturi")
                         .HasForeignKey("UserID");
 
                     b.Navigation("Dealer");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SafeWheel3.Models.AnuntBookmark", b =>
+                {
+                    b.HasOne("SafeWheel3.Models.Anunt", "Anunt")
+                        .WithMany("AnuntBookmarks")
+                        .HasForeignKey("AnuntId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SafeWheel3.Models.Bookmark", "Bookmark")
+                        .WithMany("AnuntBookmarks")
+                        .HasForeignKey("BookmarkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Anunt");
+
+                    b.Navigation("Bookmark");
+                });
+
+            modelBuilder.Entity("SafeWheel3.Models.Bookmark", b =>
+                {
+                    b.HasOne("SafeWheel3.Models.ApplicationUser", "User")
+                        .WithMany("Bookmarks")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -413,7 +488,21 @@ namespace SafeWheel3.Data.Migrations
 
             modelBuilder.Entity("SafeWheel3.Models.Anunt", b =>
                 {
+                    b.Navigation("AnuntBookmarks");
+
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("SafeWheel3.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Anunturi");
+
+                    b.Navigation("Bookmarks");
+                });
+
+            modelBuilder.Entity("SafeWheel3.Models.Bookmark", b =>
+                {
+                    b.Navigation("AnuntBookmarks");
                 });
 
             modelBuilder.Entity("SafeWheel3.Models.Marca", b =>

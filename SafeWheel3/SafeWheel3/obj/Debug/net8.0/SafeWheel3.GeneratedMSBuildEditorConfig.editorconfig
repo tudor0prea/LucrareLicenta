@@ -66,6 +66,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW51bnRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Anunt/ShowFavorites.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW51bnRcU2hvd0Zhdm9yaXRlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Bookmarks/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va21hcmtzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Bookmarks/New.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va21hcmtzXE5ldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Bookmarks/Show.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va21hcmtzXFNob3cuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Comments/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -80,6 +96,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Marca/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Shared/AnuntInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFudW50SW5mby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Tudor/OneDrive/Desktop/LucrareLicenta/SafeWheel3/SafeWheel3/Views/Shared/Error.cshtml]

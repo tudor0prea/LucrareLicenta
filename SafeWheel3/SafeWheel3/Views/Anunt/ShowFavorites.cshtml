@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Microsoft.AspNetCore.Identity
+@using SafeWheel3.Models
+@inject UserManager<ApplicationUser> UserManager
+@model IEnumerable<Anunt>
+
+
+
+<h2>Anunțuri Favorite</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Marca</th>
+            <th>Pret</th>
+            <th>Data Fabricației</th>
+            <th>Dealer</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.favoriteAnunturi == null)
+        {
+            <tr>
+                <td> NU AVETI ANUNTURI FAVORITE</td>
+            </tr>
+        } else
+        {
+
+        
+        @foreach (var anunt in ViewBag.favoriteAnunturi)
+        {
+            <tr>
+                <td>@anunt.Id</td>
+                <td>@anunt.Marca</td>
+                <td>@anunt.Pret</td>
+                <td>@anunt.DataFabricatiei</td>
+                <td>@(anunt.Dealer != null ? anunt.Dealer.Nume : "Nedeterminat")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@anunt.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@anunt.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@anunt.Id">Delete</a>
+                </td>
+            </tr>
+        }
+
+        }
+
+    </tbody>
+</table>

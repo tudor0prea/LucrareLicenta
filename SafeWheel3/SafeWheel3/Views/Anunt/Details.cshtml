@@ -10,6 +10,9 @@
     <h4>Anunt</h4>
     <hr />
 
+   
+
+
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Marca)
@@ -69,6 +72,33 @@
             </dd>
         }
     </dl>
+
+    <br />
+    <br />
+    <br />
+
+    <form method="POST" asp-controller="Anunt" asp-action="AddBookmark">
+        <input type="hidden" name="AnuntId" value="@Model.Id" />
+        <div class="d-flex flex-row justify-content-center p-3 border-1 border-top">
+            <div>
+                <select name="BookmarkId" class="form-control">
+                    <option selected>Adauga acest nunt intr-o colectie</option>
+                    @foreach (var bookmark in ViewBag.UserBookmarks)
+                    {
+                        <option value="@bookmark.Id">@bookmark.Name</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <input type="submit" class="btn btn-success alert-success" value="+" />
+            </div>
+        </div>
+    </form>
+
+    <br /> 
+    <br />
+    <br />
+
 </div>
 
 <p>

@@ -60,27 +60,27 @@ namespace SafeWheel3.Models
                     NormalizedUserName = "VANZATOR@TEST.COM",
                     PasswordHash = hasher.HashPassword(null, "Vanzator1!")
                 },
-new ApplicationUser
-{
-    Id = "8e445865-a24d-4543-a6c6-9443d048cdb2", // primary key
-    UserName = "user@test.com",
-    EmailConfirmed = true,
-    NormalizedEmail = "USER@TEST.COM",
-    Email = "user@test.com",
-    NormalizedUserName = "USER@TEST.COM",
-    PasswordHash = hasher.HashPassword(null, "User1!")
-},
-new ApplicationUser
-{
-    Id = "8e445865-a24d-4543-a6c6-9443d048cdb3", // primary key
-    UserName = "specialist@test.com",
-    EmailConfirmed = true,
-    NormalizedEmail = "SPECIALIST@TEST.COM",
-    Email = "specialist@test.com",
-    NormalizedUserName = "SPECIALIST@TEST.COM",
-    PasswordHash = hasher.HashPassword(null, "Specialist1!")
-}
-);
+                new ApplicationUser
+                {
+                    Id = "8e445865-a24d-4543-a6c6-9443d048cdb2", // primary key
+                    UserName = "user@test.com",
+                    EmailConfirmed = true,
+                    NormalizedEmail = "USER@TEST.COM",
+                    Email = "user@test.com",
+                    NormalizedUserName = "USER@TEST.COM",
+                    PasswordHash = hasher.HashPassword(null, "User1!")
+                },
+                new ApplicationUser
+                {
+                    Id = "8e445865-a24d-4543-a6c6-9443d048cdb3", // primary key
+                    UserName = "specialist@test.com",
+                    EmailConfirmed = true,
+                    NormalizedEmail = "SPECIALIST@TEST.COM",
+                    Email = "specialist@test.com",
+                    NormalizedUserName = "SPECIALIST@TEST.COM",
+                    PasswordHash = hasher.HashPassword(null, "Specialist1!")
+                }
+                ); ;
                 // ASOCIEREA USER-ROLE
                 context.UserRoles.AddRange(
                 new IdentityUserRole<string>
