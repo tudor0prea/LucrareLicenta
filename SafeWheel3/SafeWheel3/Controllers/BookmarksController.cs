@@ -143,7 +143,7 @@ namespace SafeWheel3.Controllers
             {
                 db.Bookmarks.Add(bm);
                 db.SaveChanges();
-                TempData["message"] = "Colectia a fost adaugata";
+                TempData["message"] = "Parcarea a fost creată";
                 return RedirectToAction("Index");
             }
 

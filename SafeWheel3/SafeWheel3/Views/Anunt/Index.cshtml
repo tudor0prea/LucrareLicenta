@@ -4,123 +4,250 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-<br />
-@if (ViewBag.Message != null)
-{
-    <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - SafeWheel3</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SafeWheel3.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/000/537/175/original/plate-metal-background-vector-illustration.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+        }
 
-<br />
-<form method="GET">
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search topics or keywords" name="search"
-               value="@ViewBag.SearchString">
-        <label for="minPrice">Preț minim:</label>
-        <input type="number" id="minPrice" name="minPrice" value="@ViewBag.minPrice"  /> <!-- Adaugă valoarea minimă curentă din ViewBag -->
-        <br />
-        <label for="maxPrice">Preț maxim:</label>
-        <input type="number" id="maxPrice" name="maxPrice" value="@ViewBag.maxPrice"  /> <!-- Adaugă valoarea maximă curentă din ViewBag -->
-        <br />
+        header {
+            background-color: #2c3e50;
+        }
 
-        <label for="minData">Data fabricatiei minima:</label>
-        <input type="date" id="minData" name="minData" value="@ViewBag.minData" /> <!-- Adaugă valoarea minimă curentă din ViewBag -->
-        <br />
-        <label for="maxData">Data fabricatiei maxima:</label>
-        <input type="date" id="maxData" name="maxData" value="@ViewBag.maxData" /> <!-- Adaugă valoarea minimă curentă din ViewBag -->
+        .navbar-brand, .nav-link {
+            color: #ecf0f1 !important;
+        }
 
+            .navbar-brand:hover, .nav-link:hover {
+                color: #f39c12 !important;
+            }
 
-        
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
 
+        .footer a {
+            color: #f39c12;
+        }
 
+            .footer a:hover {
+                color: #e74c3c;
+            }
 
-        <label class="small-text" for="dealer">&nbsp;&nbsp; Marca: &nbsp;&nbsp;</label>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            border-radius: 10px;
+        }
 
-                    <select style="background-color:mintcream;" class="selector-afisare" name="dealer" id="dealer">
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            }
 
-                        @if (ViewBag.ChosenDealer != -1) //TINEM CONT DE domeniu
-                        {
-                            @foreach (var dom in ViewBag.Dealers) // 2 for uri pentru ca varianta aleasa sa fie cea buna in drop down
+        .search-section {
+            margin-bottom: 20px;
+        }
+
+            .search-section .form-control,
+            .search-section .btn,
+            .search-section select {
+                margin-bottom: 10px;
+            }
+
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card-body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SafeWheel3</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @if (User.IsInRole("Admin") || User.IsInRole("User") || User.IsInRole("Vanzator") || User.IsInRole("Specialist"))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            @if (User.IsInRole("Vanzator") || User.IsInRole("Admin"))
                             {
-                                @if (Convert.ToString(dom.Value) == Convert.ToString(ViewBag.ChosenDealer))
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Anunt" asp-action="Create">Adaugă un anunț</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Anunt" asp-action="Index">Listă anunțuri</a>
+                            </li>
+                            @if (User.IsInRole("User") || User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Bookmarks" asp-action="Index">Parcările mele</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Index">Toti utilizatorii</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <h1 class="mt-4 mb-4 text-center">Index</h1>
+
+        @if (ViewBag.Message != null)
+        {
+            <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+        }
+        @{
+            var message = TempData["message"] as string;
+        }
+
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <h2 class="alert-success p-3 rounded-3 text-center mb-5">@message</h2>
+        }
+
+        <div class="search-section">
+            <form method="GET">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search topics or keywords" name="search" value="@ViewBag.SearchString">
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="minPrice">Preț minim:</label>
+                        <input type="number" id="minPrice" class="form-control" name="minPrice" value="@ViewBag.minPrice" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="maxPrice">Preț maxim:</label>
+                        <input type="number" id="maxPrice" class="form-control" name="maxPrice" value="@ViewBag.maxPrice" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="minData">Data fabricației minimă:</label>
+                        <input type="date" id="minData" class="form-control" name="minData" value="@ViewBag.minData" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="maxData">Data fabricației maximă:</label>
+                        <input type="date" id="maxData" class="form-control" name="maxData" value="@ViewBag.maxData" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="minKm">Kilometraj minim:</label>
+                        <input type="number" id="minKm" class="form-control" name="minKm" value="@ViewBag.minKm" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="maxKm">Kilometraj maxim:</label>
+                        <input type="number" id="maxKm" class="form-control" name="maxKm" value="@ViewBag.maxKm" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="small-text" for="dealer">Marca:</label>
+                        <select class="form-control" name="dealer" id="dealer">
+                            @if (ViewBag.ChosenDealer != -1)
+                            {
+                                @foreach (var dom in ViewBag.Dealers)
+                                {
+                                    @if (Convert.ToString(dom.Value) == Convert.ToString(ViewBag.ChosenDealer))
+                                    {
+                                        <option value="@(dom.Value)">@dom.Text</option>
+                                        break;
+                                    }
+                                }
+                                @foreach (var dom in ViewBag.Dealers)
+                                {
+                                    @if (Convert.ToString(dom.Value) != Convert.ToString(ViewBag.ChosenDealer))
+                                    {
+                                        <option value="@(dom.Value)">@dom.Text</option>
+                                    }
+                                }
+                                <option value="-1">-</option>
+                            }
+                            else
+                            {
+                                <option value="-1">-</option>
+                                @foreach (var dom in ViewBag.Dealers)
                                 {
                                     <option value="@(dom.Value)">@dom.Text</option>
-                                    break;
                                 }
                             }
-
-                            @foreach (var dom in ViewBag.Dealers){
-                                @if (Convert.ToString(dom.Value) != Convert.ToString(ViewBag.ChosenDealer))
-                                {
-                                    <option value="@(dom.Value)">@dom.Text</option>
-                                }
-                            }
-
-                            <option value="-1">-</option> // trebuie sa ma pot intoarce la a nu tine cont de domeniu
-
-                        }
-                        else{
-                            <option value="-1">-</option>
-
-                            @foreach (var dom in ViewBag.Dealers)
-                            {
-                                <option value="@(dom.Value)">@dom.Text</option>
-                            }
-                        }
-           
-                    </select>
-        
-        
-        
-                 </div>
-
-
-
-
-
-
-        <button class="btn btn-outline-success" type="submit">Search</button>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-outline-success mt-3" type="submit">Caută</button>
+            </form>
+        </div>
     </div>
 
-    <br />
-</form>
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success">
+            @ViewBag.SuccessMessage
+        </div>
+    }
 
-@if (ViewBag.SuccessMessage != null)
-{
-    <div class="alert alert-success">
-        @ViewBag.SuccessMessage
-    </div>
-}
+    <h2 class="mt-4 mb-4">Anunțuri</h2>
 
-
-<h2>Anunțuri</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Marca</th>
-            <th>Pret</th>
-            <th>Data Fabricației</th>
-            <th>Dealer</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+    <div class="row">
         @foreach (var anunt in Model)
         {
-            <tr>
-                <td>@anunt.Id</td>
-                <td>@anunt.Marca</td>
-                <td>@anunt.Pret</td>
-                <td>@anunt.DataFabricatiei</td>
-                <td>@(anunt.Dealer != null ? anunt.Dealer.Nume : "Nedeterminat")</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@anunt.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@anunt.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@anunt.Id">Delete</a>
-                </td>
-            </tr>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@Url.Content(anunt.Image)" class="card-img-top" alt="AnuntImage">
+                    <div class="card-body">
+                        <h5 class="card-title">@anunt.Dealer?.Nume @anunt.Marca</h5>
+                        <p class="card-text">@anunt.Pret lei</p>
+                        <p class="card-text">@anunt.DataFabricatiei</p>
+                        @if (ViewBag.UserCurent == anunt.UserID || User.IsInRole("Admin"))
+                        {
+                            <a href="@Url.Action("Edit", new { id = anunt.Id })" class="btn btn-primary">Editează</a>
+                        }
+                        <a href="@Url.Action("Details", new { id = anunt.Id })" class="btn btn-secondary">Detalii</a>
+                        @if (ViewBag.UserCurent == anunt.UserID || User.IsInRole("Admin"))
+                        {
+                            <a href="@Url.Action("Delete", new { id = anunt.Id })" class="btn btn-danger">Șterge</a>
+                        }
+                    </div>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - SafeWheel3 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+</body>
+</html>

@@ -141,6 +141,9 @@ namespace SafeWheel3.Controllers
 
             var search = "";
 
+            ViewBag.UserCurent = _userManager.GetUserId(User);
+
+
             if (Convert.ToString(HttpContext.Request.Query["search"]) != null)
             {
                 search = Convert.ToString(HttpContext.Request.Query["search"]).Trim();
@@ -193,6 +196,42 @@ namespace SafeWheel3.Controllers
             // ---- rezultat
             filteredAnunturi = filteredAnunturi.Where(ann => anunturiIdsMIN.Contains(ann.Id) && anunturiIdsMAX.Contains(ann.Id))
                 .Include("Dealer").OrderBy(a => a.DataFabricatiei);
+
+            //Filtrare pentru Km
+            Int32 maxKm = 1000000;
+            Int32 minKm = 0;
+            List<int> anunturiIdsMaxKm = new List<int>();
+            List<int> anunturiIdsMinKm = new List<int>();
+
+            // ---------- minim Km
+            if (Convert.ToString(HttpContext.Request.Query["minKm"]) == "")
+                minKm = 0;
+            else if (Convert.ToString(HttpContext.Request.Query["minKm"]) != null)
+                minKm = Convert.ToInt32(HttpContext.Request.Query["minKm"]);
+
+            ViewBag.minKm = minKm;
+
+            anunturiIdsMinKm = db.Anunturi.Where(
+               an => an.Km >= minKm
+               ).Select(a => a.Id).ToList();
+
+            // ---------- maxim Km
+            if (Convert.ToString(HttpContext.Request.Query["maxKm"]) == "")
+                maxKm = 1000000;
+            else if (Convert.ToString(HttpContext.Request.Query["maxKm"]) != null)
+                maxKm = Convert.ToInt32(HttpContext.Request.Query["maxKm"]);
+
+            ViewBag.maxKm = maxKm;
+
+            anunturiIdsMaxKm = db.Anunturi.Where(
+                an => an.Km <= maxKm
+                ).Select(a => a.Id).ToList();
+
+            // ---- rezultat combinat
+            filteredAnunturi = filteredAnunturi
+                .Where(ann => anunturiIdsMinKm.Contains(ann.Id) && anunturiIdsMaxKm.Contains(ann.Id))
+                .Include("Dealer")
+                .OrderBy(a => a.DataFabricatiei);
 
 
 
@@ -489,8 +528,14 @@ namespace SafeWheel3.Controllers
             return View(anunt);
         }
 
+
+
+
+
+
         // POST: Anunt/Edit/5
-        [HttpPost]
+
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Anunt anunt, IFormFile AnuntImage)
         {
@@ -502,8 +547,11 @@ namespace SafeWheel3.Controllers
 
             if (ModelState.IsValid)
             {
-                
-               if (AnuntImage != null && AnuntImage.Length > 0)
+                var existingAnunt = db.Anunturi.Where(a => a.Id == id).First();
+                anunt.DataFabricatiei = existingAnunt.DataFabricatiei;
+                anunt.Id= existingAnunt.Id; 
+
+                if (AnuntImage != null && AnuntImage.Length > 0)
                {
                     // Generam calea de stocare a fisierului
                     var storagePath = Path.Combine(
@@ -517,6 +565,8 @@ namespace SafeWheel3.Controllers
                     {
                         await AnuntImage.CopyToAsync(fileStream);
                     }
+
+                   
 
                     // General calea de afisare a fisierului care va fi stocata in baza de date
                     var databaseFileName = "/images/" + AnuntImage.FileName;
@@ -538,6 +588,91 @@ namespace SafeWheel3.Controllers
             }
 
             // If ModelState is not valid, return to the Edit view with the entered data
+            ViewBag.Dealers = new SelectList(db.Marci, "Id", "Nume", anunt.DealerId);
+            return View(anunt);
+        }*/
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Anunt anunt, IFormFile AnuntImage)
+        {
+            if (id != anunt.Id)
+            {
+                return NotFound();
+            }
+
+            var existingAnunt = await db.Anunturi.AsNoTracking().FirstOrDefaultAsync(a => a.Id == id);
+            if (existingAnunt == null)
+            {
+                return NotFound();
+            }
+
+            // Păstrăm valoarea originală a DataFabricatiei
+            anunt.DataFabricatiei = existingAnunt.DataFabricatiei;
+/*
+            if (ModelState.IsValid)
+            {*/
+                if (AnuntImage != null && AnuntImage.Length > 0)
+                {
+                    // Generăm calea de stocare a fișierului
+                    var storagePath = Path.Combine(
+                        _env.WebRootPath, // Luăm calea folderului wwwroot
+                        "images", // Adăugăm calea folderului images
+                        AnuntImage.FileName // Numele fișierului
+                    );
+
+                    // Uploadăm fișierul la calea de storage
+                    using (var fileStream = new FileStream(storagePath, FileMode.Create))
+                    {
+                        await AnuntImage.CopyToAsync(fileStream);
+                    }
+
+                    // Generăm calea de afișare a fișierului care va fi stocată în baza de date
+                    var databaseFileName = "/images/" + AnuntImage.FileName;
+
+                    // Salvăm storagePath-ul în baza de date
+                    anunt.Image = databaseFileName;
+                }
+                else
+                {
+                    // Păstrăm imaginea existentă dacă nu a fost încărcată una nouă
+                    anunt.Image = existingAnunt.Image;
+                }
+
+                // Attach the entity and update only the modified properties
+                db.Anunturi.Attach(anunt);
+            db.Entry(anunt).Property(x => x.DataFabricatiei).IsModified = true;
+                db.Entry(anunt).Property(x => x.Marca).IsModified = true;
+                db.Entry(anunt).Property(x => x.Pret).IsModified = true;
+                db.Entry(anunt).Property(x => x.DealerId).IsModified = true;
+                db.Entry(anunt).Property(x => x.Description).IsModified = true;
+                db.Entry(anunt).Property(x => x.NrTel).IsModified = true;
+                db.Entry(anunt).Property(x => x.Km).IsModified = true;
+                if (AnuntImage != null && AnuntImage.Length > 0)
+                {
+                    db.Entry(anunt).Property(x => x.Image).IsModified = true;
+                }
+
+                try
+                {
+                    await db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!await db.Anunturi.AnyAsync(e => e.Id == anunt.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return RedirectToAction(nameof(Index));
+            //}
+
+            // Dacă ModelState nu este valid, revenim la view-ul de Editare cu datele introduse
             ViewBag.Dealers = new SelectList(db.Marci, "Id", "Nume", anunt.DealerId);
             return View(anunt);
         }
@@ -604,6 +739,39 @@ namespace SafeWheel3.Controllers
             ViewBag.UserBookmarks = db.Bookmarks
                                       .Where(b => b.UserId == _userManager.GetUserId(User))
                                       .ToList();
+
+            //Pentru a vedea ce comentarii are:
+
+            /*            string userCurent = _userManager.GetUserId(User);
+
+                        var UserPlati = db.Plati.Include("Comments").Where(p => p.UserID == userCurent);
+                        var UserNonPlati= db.Plati.Include("Comments").Where(p => p.UserID != userCurent);
+
+                        foreach(var item in UserPlati)
+                        {
+                            ViewBag.ComentariiGata.Add(item.Comment);
+                        }
+
+                        foreach (var item in UserNonPlati)
+                        {
+                            ViewBag.ComentariiNonGata.Add(item.Comment);
+                        }*/
+
+            string userCurent = _userManager.GetUserId(User);
+            
+            List<Comment> ComentariiGata = db.Comments
+                                            .Where(c =>  ( db.Plati.Any(p => p.CommentID == c.Id && p.UserID == userCurent) ) &&
+                                                           c.AnuntId == id )
+                                            .ToList();
+
+            List<Comment> ComentariiNonGata = db.Comments
+                                            .Where(c => db.Plati.All(p => p.CommentID != c.Id || p.UserID != userCurent)
+                                            && c.AnuntId == id)
+                                            .ToList();
+
+
+            ViewBag.ComentariiGata = ComentariiGata;
+            ViewBag.ComentariiNonGata = ComentariiNonGata;
             SetAccessRights();
             return View(anunt);
         }

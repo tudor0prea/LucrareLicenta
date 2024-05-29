@@ -20,5 +20,10 @@ namespace SafeWheel3.Models
 
         [NotMapped]
         public IEnumerable<SelectListItem>? AllRoles { get; set; }
-    }
+
+        public virtual List<Plata> Plati { get; set; }
+
+
+        public int Tokens { get; set; } = 100;
+     }
 }

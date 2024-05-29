@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SafeWheel3.Data;
 
@@ -11,9 +12,11 @@ using SafeWheel3.Data;
 namespace SafeWheel3.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240516151315_Plata4")]
+    partial class Plata4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -186,17 +189,10 @@ namespace SafeWheel3.Data.Migrations
                     b.Property<string>("ImagePaths")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Km")
-                        .HasColumnType("int");
-
                     b.Property<string>("Marca")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("NrTel")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Pret")
                         .HasColumnType("int");

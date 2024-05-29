@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SafeWheel3.Data;
 
@@ -11,9 +12,11 @@ using SafeWheel3.Data;
 namespace SafeWheel3.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240516134836_Plata")]
+    partial class Plata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -186,17 +189,10 @@ namespace SafeWheel3.Data.Migrations
                     b.Property<string>("ImagePaths")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Km")
-                        .HasColumnType("int");
-
                     b.Property<string>("Marca")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("NrTel")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Pret")
                         .HasColumnType("int");
@@ -289,9 +285,6 @@ namespace SafeWheel3.Data.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Tokens")
-                        .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -399,9 +392,8 @@ namespace SafeWheel3.Data.Migrations
                     b.Property<int>("CommentID")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -409,7 +401,7 @@ namespace SafeWheel3.Data.Migrations
 
                     b.HasIndex("CommentID");
 
-                    b.ToTable("Plati");
+                    b.ToTable("Plata");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,209 +1,167 @@
 ﻿@model SafeWheel3.Models.Anunt
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalii";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Anunt</h4>
-    <hr />
-
-   
-
-
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Marca)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Marca)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Pret)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Pret)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DataFabricatiei)
-        </dt>
-        <dd class="col-sm-10">
-            @if (Model.DataFabricatiei.HasValue)
-            {
-                @Html.DisplayFor(model => model.DataFabricatiei.Value)
-            }
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Dealer.Nume)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Dealer.Nume)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.User.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.User.FirstName)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class="col-sm-10">
-            <img src="@Url.Content(Model.Image)" alt="AnuntImage" class="img-fluid" />
-        </dd>
-
-        @foreach (var imagePath in Model.ImagePaths)
-        {
-            <dd class="col-sm-2">
-                <img src="@Url.Content(imagePath)" alt="AnuntImage" class="img-fluid" />
-            </dd>
-        }
-    </dl>
-
-    <br />
-    <br />
-    <br />
-
-    <form method="POST" asp-controller="Anunt" asp-action="AddBookmark">
-        <input type="hidden" name="AnuntId" value="@Model.Id" />
-        <div class="d-flex flex-row justify-content-center p-3 border-1 border-top">
-            <div>
-                <select name="BookmarkId" class="form-control">
-                    <option selected>Adauga acest nunt intr-o colectie</option>
-                    @foreach (var bookmark in ViewBag.UserBookmarks)
-                    {
-                        <option value="@bookmark.Id">@bookmark.Name</option>
-                    }
-                </select>
-            </div>
-            <div>
-                <input type="submit" class="btn btn-success alert-success" value="+" />
-            </div>
-        </div>
-    </form>
-
-    <br /> 
-    <br />
-    <br />
-
-</div>
-
-<p>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</p>
-
-
-
-
-@foreach (var comm in Model.Comments)
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2"></div>
-
-            <div class="col-md-8">
-
-                <div>
-
-                    <p>@comm.Content</p>
-                    <small>@comm.Date</small>
-                    <strong><i class="bi bi-person"></i>@comm.UserName</strong> 
-
-                </div>
-                <br>
-
-                
-                @if (comm.UserId == ViewBag.UserCurent || ViewBag.AfisareButoane==true )
-                {
-                    
-                    <div class="d-flex">
-
-                        <div>
-
-                            <a class="btn btn-outline-primary" href="/Comments/Edit/@comm.Id"><i class="bi bi-pencil-square"></i>Editeaza</a>
-
-                        </div>
-
-                        <div>
-
-                            <form method="post" action="/Comments/Delete/@comm.Id">
-
-                                <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i>Sterge</button>
-
-                            </form>
-
-                        </div>
-
-                    </div>
-                }
-
-                
-
-                <br />
-
-            </div>
-
-            <div class="col-md-2"></div>
-
-        </div>
-
-    </div>
-}
-
-
-@* Afisarea formularului in care se poate adauga un comentariu *@
-
-<div class="container">
-
+<div class="container mt-4">
     <div class="row">
-
-        <div class="col-md-2"></div>
-
         <div class="col-md-8">
-
-            <div class="card">
-
-                <form method="post" action="/Anunt/Details/@Model.Id">
-
-                    <div class="card-body">
-
-                        <input type="hidden" name="AnuntId" value="@Model.Id" />
-
-                        <label>Continut comentariu</label>
-                        <br />
-
-                        <textarea class="form-control" name="Content"></textarea>
-
-                        @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
-
-                        <br /><br />
-
-                        <button class="btn btn-success " type="submit">Adauga comentariul</button>
-
-                    </div>
-
-                </form>
-
+            <div class="text-center mb-4">
+                <img src="@Url.Content(Model.Image)" alt="AnuntImage" class="img-fluid" />
             </div>
-
+            <div class="text-center mb-4">
+                @foreach (var imagePath in Model.ImagePaths)
+                {
+                    <img src="@Url.Content(imagePath)" alt="AnuntImage" class="img-fluid m-2" style="max-width: 200px;" />
+                }
+            </div>
         </div>
+        <div class="col-md-4">
+            <h2 class="text-primary">@Html.DisplayFor(model => model.Dealer.Nume) @Model.Marca</h2>
+            <h3 class="text-success">@Model.Pret EUR</h3>
+            
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-4">Data fabricației</dt>
+                <dd class="col-sm-8">
+                    @if (Model.DataFabricatiei.HasValue)
+                    {
+                        @Html.DisplayFor(model => model.DataFabricatiei.Value)
+                    }
+                </dd>
 
-        <div class="col-md-2"></div>
+                <dt class="col-sm-4">Rulaj</dt>
+                <dd class="col-sm-8">@Model.Km km</dd>
 
+                <dt class="col-sm-4">Descriere</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Description)</dd>
+
+                <dt class="col-sm-4">Număr de telefon</dt>
+                <dd class="col-sm-8">@Model.NrTel</dd>
+
+               
+            </dl>
+
+
+            <form method="POST" asp-controller="Anunt" asp-action="AddBookmark" class="mt-4">
+                <input type="hidden" name="AnuntId" value="@Model.Id" />
+                <div class="d-flex flex-row justify-content-center align-items-center p-3 border-1 border-top bg-light rounded shadow-sm">
+                    <div class="form-group mb-0">
+                        <select name="BookmarkId" class="form-control">
+                            <option selected>Adauga acest vehicul într-o parcare</option>
+                            @foreach (var bookmark in ViewBag.UserBookmarks)
+                            {
+                                <option value="@bookmark.Id">@bookmark.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="ml-2">
+                        <input type="submit" class="btn btn-success alert-success rounded-circle" value="+" style="width: 40px; height: 40px; font-size: 1.5em; padding: 0;">
+                    </div>
+                </div>
+            </form>
+
+
+
+            <div class="mt-4 text-center">
+                @if (ViewBag.UserCurent == Model.UserID || User.IsInRole("Admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editează</a>
+                
+                }
+                
+                <a asp-action="Index" class="btn btn-secondary">Înapoi la lista</a>
+            </div>
+        </div>
     </div>
-
 </div>
+
+<h3>Expertizele specialiștilor</h3>
+
+@foreach (var comm in ViewBag.ComentariiGata)
+{
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <p>@comm.Content</p>
+                        <small class="text-muted">@comm.Date</small>
+                        <strong class="d-block"><i class="bi bi-person"></i>@comm.UserName</strong>
+                    </div>
+                    @if (comm.UserId == ViewBag.UserCurent || ViewBag.AfisareButoane == true)
+                    {
+                        <div class="card-footer d-flex justify-content-between">
+                            <a class="btn btn-outline-primary" href="/Comments/Edit/@comm.Id"><i class="bi bi-pencil-square"></i> Editează</a>
+                            <form method="post" action="/Comments/Delete/@comm.Id">
+                                <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i> Șterge</button>
+                            </form>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@foreach (var comm in ViewBag.ComentariiNonGata)
+{
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        @if (comm.UserId != ViewBag.UserCurent)
+                        {
+                            <p>Conținutul este ascuns. Cumpărați expertiza pentru a o vizualiza.</p>
+                        }
+                        else
+                        {
+                            <p>@comm.Content</p>
+                        }
+                        <small class="text-muted">@comm.Date</small>
+                        <strong class="d-block"><i class="bi bi-person"></i>@comm.UserName</strong>
+                        <form method="post" action="/Plata/New" class="mt-2">
+                            <input type="hidden" name="Comment" value="@comm" />
+                            <input type="hidden" name="CommentID" value="@comm.Id" />
+                            <input type="hidden" name="UserID" value="@ViewBag.UserCurent" />
+                            <label>Pret: 10tk</label>
+                            <button class="btn btn-success mt-2" type="submit">Cumpără expertiza</button>
+                        </form>
+                    </div>
+                    @if (comm.UserId == ViewBag.UserCurent || ViewBag.AfisareButoane == true)
+                    {
+                        <div class="card-footer d-flex justify-content-between">
+                            <a class="btn btn-outline-primary" href="/Comments/Edit/@comm.Id"><i class="bi bi-pencil-square"></i> Editează</a>
+                            <form method="post" action="/Comments/Delete/@comm.Id">
+                                <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i> Șterge</button>
+                            </form>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (User.IsInRole("Specialist"))
+{
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" action="/Anunt/Details/@Model.Id">
+                            <input type="hidden" name="AnuntId" value="@Model.Id" />
+                            <label>Conținut expertiză</label>
+                            <textarea class="form-control" name="Content"></textarea>
+                            @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+                            <button class="btn btn-success mt-2" type="submit">Publică expertiza</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

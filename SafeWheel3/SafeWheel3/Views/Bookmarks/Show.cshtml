@@ -1,36 +1,100 @@
 ﻿@model SafeWheel3.Models.Bookmark
 
-
-<div class="row">
-
-    <div class="col-12">
-        <h5 class="card-title" name="Name">@Model.Name</h5>
-        @if (ViewBag.EsteAdmin)
-        {
-            <i class="bi bi-person"> Creat de: </i> @Model.User.UserName
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            border-radius: 10px;
         }
 
-        <br />
-        <br />
-        Articole in colectie:
-        <br /><br />
-    </div>
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            }
 
-    @if (Model.AnuntBookmarks.Count > 0)
-        @foreach (var anuntBookmark in Model.AnuntBookmarks)
-        {
+        .card-body {
+            text-align: center;
+        }
+
+        .bookmark-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .bookmark-header h5 {
+                font-size: 2em;
+                font-weight: bold;
+            }
+
+            .bookmark-header i {
+                font-size: 1.2em;
+            }
+
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row bookmark-header">
             <div class="col-12">
-                <div class="card" style="width: 100%;">
-                    @*<img src="..." class="card-img-top" alt="..."> *@
-
-                    <div class="card-body">
-
-                        @Html.Partial("AnuntInfo", anuntBookmark.Anunt)
-
-                    </div>
-                </div>
+                <h5 class="card-title" name="Name">@Model.Name</h5>
+                @if (ViewBag.EsteAdmin)
+                {
+                    <i class="bi bi-person"> Creat de: </i> @Model.User.UserName
+                }
+                <br />
+                
             </div>
-        }
+        </div>
 
-</div>
+        <div class="row">
+            @if (Model.AnuntBookmarks.Count > 0)
+            {
+                @foreach (var anuntBookmark in Model.AnuntBookmarks)
+                {
+                    var anunt = anuntBookmark.Anunt;
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="@Url.Content(anunt.Image)" class="card-img-top" alt="AnuntImage">
+                            <div class="card-body">
+                                <h5 class="card-title">@anunt.Dealer?.Nume @anunt.Marca</h5>
+
+                                <p class="card-text">@anunt.Pret lei</p>
+                                <p class="card-text">@anunt.DataFabricatiei</p>
+
+                                @if (ViewBag.UserCurent == anunt.UserID || User.IsInRole("Admin"))
+                                {
+                                    <a href="@Url.Action("Edit", new { id = anunt.Id })" class="btn btn-primary">Editează</a>
+                                }
+                                <a href="@Url.Action("Details", new { id = anunt.Id })" class="btn btn-secondary">Detalii</a>
+                                @if (ViewBag.UserCurent == anunt.UserID || User.IsInRole("Admin"))
+                                {
+                                    <a href="@Url.Action("Delete", new { id = anunt.Id })" class="btn btn-danger">Șterge</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <p class="text-center">Nu există vehicule în această parcare</p>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

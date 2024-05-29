@@ -45,8 +45,17 @@ public class Anunt
     public string Image { get; set; }
     public List<string>? ImagePaths { get; set; }
 
-
+    [MaxLength(700, ErrorMessage = "Descrierea nu poate avea mai mult de 700 de caractere.")]
+    [Required(ErrorMessage = "Descrierea este obligatorie.")]
     public string Description { get; set; }
+    
+    [MaxLength(10, ErrorMessage = "Numărul de telefon nu este valid.")]
+    [MinLength(10, ErrorMessage = "Numărul de telefon nu este valid.")]
+    public string NrTel {  get; set; }
+    
+    [Range(1, 10000000000, ErrorMessage = "Kilometrajul introdus nu este valid.")]
+    public Int32 Km {  get; set; }    
+
 
     public virtual ICollection<Comment>? Comments { get; set; }
 
