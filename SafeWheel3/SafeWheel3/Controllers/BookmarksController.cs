@@ -29,7 +29,7 @@ namespace SafeWheel3.Controllers
             _roleManager = roleManager;
         }
 
-        [Authorize(Roles = "User,Editor,Admin")]
+        [Authorize(Roles = "User, Admin")]
         // toti utilizatorii pot vedea Bookmark-urile existente in platforma
         // fiecare utilizator vede bookmark-urile pe care le-a creat
         // HttpGet - implicit

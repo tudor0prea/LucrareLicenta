@@ -1,0 +1,91 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Autentificare";
+}
+
+<h1>
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-raised-hand" viewBox="0 0 16 16">
+        <path d="M6 6.207v9.043a.75.75 0 0 0 1.5 0V10.5a.5.5 0 0 1 1 0v4.75a.75.75 0 0 0 1.5 0v-8.5a.25.25 0 1 1 .5 0v2.5a.75.75 0 0 0 1.5 0V6.5a3 3 0 0 0-3-3H6.236a1 1 0 0 1-.447-.106l-.33-.165A.83.83 0 0 1 5 2.488V.75a.75.75 0 0 0-1.5 0v2.083c0 .715.404 1.37 1.044 1.689L5.5 5c.32.32.5.754.5 1.207" />
+        <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+    </svg>
+    @ViewData["Title"]
+</h1>
+
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f8f9fa;
+    }
+
+    .login-box {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .altevariante {
+        color: #f39c12;
+    }
+
+    .login-submit:hover {
+        background-color: #f39c12;
+        color: black;
+        border-color: black;
+    }
+</style>
+
+
+    <div class="login-box">
+        
+                <section>
+                    <form id="account" method="post">
+                        <h2>Introduceți datele dumneavoastră pentru a vă accesa contul</h2>
+                        <hr />
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                            <label asp-for="Input.Email" class="form-label">E-mail</label>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                            <label asp-for="Input.Password" class="form-label">Parolă</label>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="checkbox mb-3">
+                            <label asp-for="Input.RememberMe" class="form-label">
+                                <input class="form-check-input" asp-for="Input.RememberMe" />
+                                Ține-mă minte
+                            </label>
+                        </div>
+                        <div>
+                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary" style="background-color: #f39c12; border-color: #f39c12;">
+                                Log in
+                            </button>
+                        </div>
+                        <div class="altevariante">
+                            <p>
+                                <a class="altevariante" id="forgot-password" asp-page="./ForgotPassword">Ți-ai uitat parola?</a>
+                            </p>
+                            <p>
+                                <a class="altevariante" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Creează un cont nou</a>
+                            </p>
+                            <p>
+                                <a class="altevariante" id="resend-confirmation" asp-page="./ResendEmailConfirmation">Retrimite e-mail-ul de validare</a>
+                            </p>
+                        </div>
+                    </form>
+                </section>
+            </div>
+  
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

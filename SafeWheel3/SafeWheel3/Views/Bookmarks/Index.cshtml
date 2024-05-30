@@ -2,15 +2,10 @@
 
 @{
     ViewData["Title"] = "Bookmarks";
+   
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+
     <style>
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -27,13 +22,13 @@
         }
 
         .btn-custom {
-            background-color: #007bff;
+        background-color: #f39c12;
             color: white;
             border-radius: 50px;
         }
 
             .btn-custom:hover {
-                background-color: #0056b3;
+            background-color: #f39c12;
                 color: white;
             }
 
@@ -44,7 +39,7 @@
 
         .bookmark-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
             .bookmark-header h1 {
@@ -74,41 +69,79 @@
         .bookmark-container {
             padding-top: 20px;
         }
-    </style>
-</head>
-<body>
-    <div class="container bookmark-container">
-        <div class="bookmark-header">
-            @if (ViewBag.Message != null)
-            {
-                <h2 class="alert alert-custom p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/000/537/175/original/plate-metal-background-vector-illustration.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333 !important;
+        }
+
+        header {
+            background-color: #2c3e50 !important;
+        }
+
+        .navbar-brand, .nav-link {
+            color: #ecf0f1 !important;
+        }
+
+            .navbar-brand:hover, .nav-link:hover {
+                color: #f39c12;
             }
-            <a class="btn btn-custom mb-5" href="/Bookmarks/New">
-                <i class="bi bi-plus"></i> Creează o parcare nouă
-            </a>
-        </div>
 
-        <div class="row">
-            @foreach (var bookmark in ViewBag.Bookmarks)
-            {
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title" name="Name">@bookmark.Name</h5>
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
 
-                            @if (ViewBag.EsteAdmin)
-                            {
-                                <div class="card-text"><i class="bi bi-person"></i> Creat de: @bookmark.User.UserName</div>
-                            }
+        .footer a {
+            color: #f39c12;
+        }
 
-                            <br />
+            .footer a:hover {
+                color: #e74c3c;
+            }
 
-                            <a class="btn btn-custom" href="/Bookmarks/Show/@bookmark.Id">Afisare parcare</a>
-                        </div>
+    </style>
+
+
+<header class="text-white text-center py-3 mb-2">
+    <div class="container">
+        <h1 class="font-weight-light">Parcările mele</h1>
+    </div>
+</header>
+
+<div class="container bookmark-container">
+    <div class="bookmark-header">
+        @if (ViewBag.Message != null)
+        {
+            <h2 class="alert alert-custom p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+        }
+        <a class="btn btn-custom mb-5" href="/Bookmarks/New">
+            <i class="bi bi-plus"></i> Creează o parcare nouă
+        </a>
+    </div>
+
+    <div class="row">
+        @foreach (var bookmark in ViewBag.Bookmarks)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" name="Name">@bookmark.Name</h5>
+
+                        @if (ViewBag.EsteAdmin)
+                        {
+                            <div class="card-text"><i class="bi bi-person"></i> Creat de: @bookmark.User.UserName</div>
+                        }
+
+                        <br />
+
+                        <a class="btn btn-custom" href="/Bookmarks/Show/@bookmark.Id">Afisare parcare</a>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
-</body>
-</html>
+</div>

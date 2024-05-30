@@ -1,0 +1,31 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Datele personale și protecția acestora";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>Contul dumneavoastră conține datele personale pe care le-ați introdus în platformă. Vă oferim posibilitatea de a
+            le elimina din baza noastră de date sau de a le vizualiza, apăsând butonul de mai jos.
+        </p>
+        <p>
+            <strong>Atenție! Ștergerea datelor vă va elimina permanent contul, iar această acțiune este ireversibilă.
+            </strong>
+        </p>
+        <form id="download-data" asp-page="DownloadPersonalData" method="post">
+            <button class="btn btn-primary" type="submit">Descarcă</button>
+        </form>
+        <p>
+            <hr />
+            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Șterge</a>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

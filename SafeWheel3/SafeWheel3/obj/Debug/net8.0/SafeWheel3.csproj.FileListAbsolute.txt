@@ -565,3 +565,17 @@ C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\obj\Debug\n
 C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\obj\Debug\net8.0\SafeWheel3.pdb
 C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\obj\Debug\net8.0\SafeWheel3.genruntimeconfig.cache
 C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\obj\Debug\net8.0\ref\SafeWheel3.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.AspNetCore.Components.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\Tudor\OneDrive\Desktop\LucrareLicenta\SafeWheel3\SafeWheel3\bin\Debug\net8.0\Microsoft.JSInterop.dll

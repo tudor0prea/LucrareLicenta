@@ -1,23 +1,105 @@
 ﻿@model SafeWheel3.Models.Bookmark
 
-
-<h2 class="mb-5">Creează o parcare</h2>
-
-
-
-@using (Html.BeginForm(actionName: "New", controllerName: "Bookmarks", method: FormMethod.Post))
-{
-
-    @Html.Label("Name", "Denumire colectie")
-    <br />
-
-    @Html.TextBox("Name", null, new { @class = "form-control" })
-
-    @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
-    <br />
-    <br />
-
-    <button class="btn btn-success" type="submit">Adaugă parcarea</button>
-
+@{
+    ViewData["Title"] = "Creează o parcare";
 }
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-image: url('https://static.vecteezy.com/system/resources/previews/000/537/175/original/plate-metal-background-vector-illustration.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        color: #333 !important;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #2c3e50;
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .btn-success {
+        background-color: #f39c12;
+        color: white;
+        border-radius: 50px;
+        padding: 10px 20px;
+        transition: background-color 0.3s;
+        border-color: #f39c12;
+    }
+
+        .btn-success:hover {
+            background-color: #f39c12;
+            color: black;
+            border-color: black;
+        }
+
+    .text-danger {
+        color: #dc3545;
+    }
+
+    .container2 {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 0px;
+        max-height:25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        
+        
+    }
+
+    .container {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 600px;
+        margin: 3rem auto;
+    }
+
+    footer {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        padding: 0px;
+        position: fixed;
+        width: 100%;
+        max-height:25px;
+        bottom: 0;
+    }
+
+    .footer a {
+        color: #f39c12;
+    }
+
+        .footer a:hover {
+            color: #e74c3c;
+        }
+</style>
+
+<div class="container">
+    <h2 class="mb-5">Creează o parcare</h2>
+
+    @using (Html.BeginForm(actionName: "New", controllerName: "Bookmarks", method: FormMethod.Post))
+    {
+        @Html.Label("Name", "Denumire parcare", new { @class = "form-label" })
+        <br />
+        @Html.TextBox("Name", null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+        <br />
+        <button class="btn btn-success" type="submit">Adaugă parcarea</button>
+    }
+</div>
+
 

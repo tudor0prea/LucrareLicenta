@@ -1,0 +1,48 @@
+﻿@page
+@using Microsoft.AspNetCore.Http.Features
+@model TwoFactorAuthenticationModel
+@{
+    ViewData["Title"] = "Achiziționează credite";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h3>@ViewData["Title"]</h3>
+<div class="row">
+    <div class="col-md-6">
+        <form id="change-password-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input  class="form-control" autocomplete="current-password" aria-required="true" placeholder="Introduceți vechea parolă" />
+                <label  class="form-label">Introduceți numărul cardului</label>
+                <span  class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input  class="form-control" autocomplete="new-password" aria-required="true" placeholder="Introduceți noua parolă" />
+                <label  class="form-label">Introduceți numele titularului cardului</label>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input  class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirmați noua parolă" />
+                <label  class="form-label">Data expirării</label>
+                <span  class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirmați noua parolă" />
+                <label class="form-label">CVV</label>
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirmați noua parolă" />
+                <label class="form-label">Numărul de credite dorite</label>
+                <span class="text-danger"></span>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Cumpără</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
