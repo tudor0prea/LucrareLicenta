@@ -1,4 +1,4 @@
-# 🛞 SafeWheel - Platformă de comerț auto - Lucrare de Licență
+# 🛞 SafeWheel - Platformă de comerț auto - Lucrare de licență
 ### 🎓Absolvent: Tudor Oprea
 ### 👩‍🏫Profesor coordonator: Lect.Dr.Iulia-Teodora Banu-Demergian
 ## 🚗Descrierea sumară a aplicației:
