@@ -4,8 +4,23 @@
 @{
     ViewBag.Title = "Edit";
 }
+<style>
+    .btn-success {
+        background-color: #f39c12;
+        color: white;
+        border-radius: 50px;
+        padding: 10px 20px;
+        border-color: #f39c12;
+        transition: background-color 0.3s;
+    }
 
-<h2>Editare comentariu</h2>
+        .btn-success:hover {
+            background-color: #f39c12;
+            color: black;
+            border-color: black;
+        }
+</style>
+<h2>Editare expertiză</h2>
 <br />
 
 
@@ -13,7 +28,7 @@
       method: FormMethod.Post, routeValues: new { id = Model.Id }))
 
 {
-    @Html.Label("Content", "Continut comentariu")
+    @Html.Label("Content", "Conținut expertiză")
 
     <br />
 
@@ -25,7 +40,7 @@
     <br />
     <br />
 
-    <button class="btn  btn-primary" type="submit">Editeaza comentariul</button>
+    <button class="btn  btn-primary btn-success" type="submit" >Editează expertiza</button>
 
 }
 

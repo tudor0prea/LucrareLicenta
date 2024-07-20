@@ -82,11 +82,16 @@ app.Run();*/
 
 
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using SafeWheel3;
 using SafeWheel3.Data;
 using SafeWheel3.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddTransient <IEmailSender, EmailService>();
+
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

@@ -13,32 +13,31 @@
         <form id="change-password-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
-                <input  class="form-control" autocomplete="current-password" aria-required="true" placeholder="Introduceți vechea parolă" />
-                <label  class="form-label">Introduceți numărul cardului</label>
-                <span  class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input  class="form-control" autocomplete="new-password" aria-required="true" placeholder="Introduceți noua parolă" />
-                <label  class="form-label">Introduceți numele titularului cardului</label>
+                <input class="form-control" autocomplete="current-password" aria-required="true" placeholder="Introduceți vechea parolă" />
+                <label class="form-label">Introduceți numărul cardului</label>
                 <span class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input  class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirmați noua parolă" />
-                <label  class="form-label">Data expirării</label>
-                <span  class="text-danger"></span>
+                <input class="form-control" autocomplete="new-password" aria-required="true" placeholder="Introduceți noua parolă" />
+                <label class="form-label">Introduceți numele titularului cardului</label>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirmați noua parolă" />
+                <label class="form-label">Data expirării</label>
+                <span class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
                 <input class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirmați noua parolă" />
                 <label class="form-label">CVV</label>
                 <span class="text-danger"></span>
             </div>
-
             <div class="form-floating mb-3">
-                <input class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirmați noua parolă" />
-                <label class="form-label">Numărul de credite dorite</label>
-                <span class="text-danger"></span>
+                <input id="nr" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Numărul de credite dorite" />
+                <label for="nr" class="form-label">Numărul de credite dorite</label>
+                <span class="text-danger" id="error"></span>
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Cumpără</button>
+            <button type="button" class="w-100 btn btn-lg btn-primary" onclick="cumparaCredite()" style="background-color: #f39c12;">Cumpără</button>
         </form>
     </div>
 </div>
@@ -46,3 +45,45 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+<script>
+    function cumparaCredite() {
+        var numarCredite = document.getElementById("nr").value;
+        var errorSpan = document.getElementById("error");
+
+        if (!numarCredite) {
+            errorSpan.textContent = "Vă rugăm să introduceți numărul de credite.";
+            return;
+        } else {
+            errorSpan.textContent = "";
+        }
+
+        fetch('/Plata/cumparaCredite', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                nr: numarCredite
+            })
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                if (data.success) {
+                    alert('Achiziția a fost realizată cu succes!');
+                    // Aici poți adăuga orice logică suplimentară, cum ar fi redirecționarea utilizatorului
+                } else {
+                    errorSpan.textContent = data.message || 'A apărut o eroare. Vă rugăm să încercați din nou.';
+                }
+            })
+            .catch(error => {
+                console.error('Eroare:', error);
+                errorSpan.textContent = 'A apărut o eroare. Vă rugăm să încercați din nou.';
+            });
+    }
+</script>

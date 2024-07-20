@@ -74,7 +74,20 @@ namespace SafeWheel3.Controllers
 
 
         }
+        
+[HttpPost]
+public JsonResult cumparaCredite(int nr)
+{
+    var currentUser = _userManager.GetUserId(User);
+    var platitor = db.ApplicationUsers.Where(a => a.Id == currentUser).First();
 
+    platitor.Tokens += nr;
+
+    // Salvează modificările în baza de date
+    db.SaveChanges();
+
+    return Json(new { success = true });
+}
 
         // Conditiile de afisare a butoanelor de editare si stergere
         private void SetAccessRights()

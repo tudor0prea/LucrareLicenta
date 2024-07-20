@@ -822,7 +822,7 @@ namespace SafeWheel3.Controllers
 
             ViewBag.AfisareButoane = false;
 
-            if (User.IsInRole("Specialist") || User.IsInRole("Admin") )
+            if (User.IsInRole("Admin") )
             {
                 ViewBag.AfisareButoane = true;
             }

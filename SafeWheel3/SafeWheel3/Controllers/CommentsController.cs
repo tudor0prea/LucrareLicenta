@@ -56,7 +56,7 @@ namespace SafeWheel3.Controllers
 
         // Stergerea unui comentariu asociat unui articol din baza de date
         [HttpPost]
-        [Authorize(Roles = "User,Editor,Admin")]
+        [Authorize(Roles = "User,Specialist,Admin")]
         public IActionResult Delete(int id)
         {
             Comment comm = db.Comments.Find(id);
@@ -77,7 +77,7 @@ namespace SafeWheel3.Controllers
 
         // In acest moment vom implementa editarea intr-o pagina View separata
         // Se editeaza un comentariu existent
-        [Authorize(Roles = "User,Editor,Admin")]
+        [Authorize(Roles = "User,Specialist,Admin")]
         public IActionResult Edit(int id)
         {
             Comment comm = db.Comments.Find(id);
@@ -95,7 +95,7 @@ namespace SafeWheel3.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "User,Editor,Admin")]
+        [Authorize(Roles = "User,Specialist,Admin")]
         public IActionResult Edit(int id, Comment requestComment)
         {
             Comment comm = db.Comments.Find(id);

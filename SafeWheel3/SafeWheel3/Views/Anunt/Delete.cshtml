@@ -4,9 +4,9 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1>Ștergere anunț</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Sunteți sigur că doriți să ștergeți acest anunț?</h3>
 <div>
     <h4>Anunt</h4>
     <hr />
@@ -41,7 +41,7 @@
     </dl>
 
     <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
-        <input type="submit" value="Delete" class="btn btn-danger" />
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Șterge anunțul" class="btn btn-danger" />
+        <a asp-action="Index">Înapoi</a>
     </form>
 </div>

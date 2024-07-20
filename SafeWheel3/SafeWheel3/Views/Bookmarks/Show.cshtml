@@ -76,12 +76,12 @@
 
                                 @if (ViewBag.UserCurent == anunt.UserID || User.IsInRole("Admin"))
                                 {
-                                    <a href="@Url.Action("Edit", new { id = anunt.Id })" class="btn btn-primary">Editează</a>
+                                    <a href="@Url.Action( "Edit","Anunt", new { id = anunt.Id })" class="btn btn-primary">Editează</a>
                                 }
-                                <a href="@Url.Action("Details", new { id = anunt.Id })" class="btn btn-secondary">Detalii</a>
+                                <a href="@Url.Action("Details","Anunt", new { id = anunt.Id })" class="btn btn-secondary">Detalii</a>
                                 @if (ViewBag.UserCurent == anunt.UserID || User.IsInRole("Admin"))
                                 {
-                                    <a href="@Url.Action("Delete", new { id = anunt.Id })" class="btn btn-danger">Șterge</a>
+                                    <a href="@Url.Action( "Delete", "Anunt", new { id = anunt.Id })" class="btn btn-danger">Șterge</a>
                                 }
                             </div>
                         </div>

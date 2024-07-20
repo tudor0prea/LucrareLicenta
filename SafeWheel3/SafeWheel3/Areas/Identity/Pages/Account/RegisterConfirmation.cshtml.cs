@@ -4,6 +4,7 @@
 
 using System;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -23,6 +24,7 @@ namespace SafeWheel3.Areas.Identity.Pages.Account
 
         public RegisterConfirmationModel(UserManager<ApplicationUser> userManager, IEmailSender sender)
         {
+
             _userManager = userManager;
             _sender = sender;
         }
@@ -60,19 +62,24 @@ namespace SafeWheel3.Areas.Identity.Pages.Account
             }
 
             Email = email;
-            // Once you add a real email sender, you should remove this code that lets you confirm the account
-            DisplayConfirmAccountLink = true;
-            if (DisplayConfirmAccountLink)
+
+
+            if (!await _userManager.IsEmailConfirmedAsync(user))
             {
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                EmailConfirmationUrl = Url.Page(
+                var callbackUrl = Url.Page(
                     "/Account/ConfirmEmail",
                     pageHandler: null,
                     values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                     protocol: Request.Scheme);
+
+                EmailConfirmationUrl = HtmlEncoder.Default.Encode(callbackUrl);
+                await _sender.SendEmailAsync(email, "Confirmați-vă noul cont SafeWheel",
+                    $"Salut, ne bucurăm că ai ales să faci parte din comunitatea noastră. Pentru a-ți confirma noul cont te rugăm <a href='{EmailConfirmationUrl}'>apasă aici</a>. Succes în găsirea mașinii dorite! Cu prietenie, Echipa SafeWheel");
             }
+
 
             return Page();
         }

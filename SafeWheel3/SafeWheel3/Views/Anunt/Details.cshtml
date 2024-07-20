@@ -4,23 +4,23 @@
     ViewData["Title"] = "Detalii";
 }
 
-<div class="container mt-4">
+<div class="container mt-4 p-4 border rounded bg-white">
     <div class="row">
         <div class="col-md-8">
             <div class="text-center mb-4">
-                <img src="@Url.Content(Model.Image)" alt="AnuntImage" class="img-fluid" />
+                <img src="@Url.Content(Model.Image)" alt="AnuntImage" class="img-fluid rounded" />
             </div>
             <div class="text-center mb-4">
                 @foreach (var imagePath in Model.ImagePaths)
                 {
-                    <img src="@Url.Content(imagePath)" alt="AnuntImage" class="img-fluid m-2" style="max-width: 200px;" />
+                    <img src="@Url.Content(imagePath)" alt="AnuntImage" class="img-fluid m-2 rounded" style="max-width: 200px;" />
                 }
             </div>
         </div>
         <div class="col-md-4">
             <h2 class="text-primary">@Html.DisplayFor(model => model.Dealer.Nume) @Model.Marca</h2>
             <h3 class="text-success">@Model.Pret EUR</h3>
-            
+
             <hr />
             <dl class="row">
                 <dt class="col-sm-4">Data fabricației</dt>
@@ -39,10 +39,7 @@
 
                 <dt class="col-sm-4">Număr de telefon</dt>
                 <dd class="col-sm-8">@Model.NrTel</dd>
-
-               
             </dl>
-
 
             <form method="POST" asp-controller="Anunt" asp-action="AddBookmark" class="mt-4">
                 <input type="hidden" name="AnuntId" value="@Model.Id" />
@@ -62,15 +59,11 @@
                 </div>
             </form>
 
-
-
             <div class="mt-4 text-center">
                 @if (ViewBag.UserCurent == Model.UserID || User.IsInRole("Admin"))
                 {
                     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editează</a>
-                
                 }
-                
                 <a asp-action="Index" class="btn btn-secondary">Înapoi la lista</a>
             </div>
         </div>
@@ -81,7 +74,7 @@
 
 @foreach (var comm in ViewBag.ComentariiGata)
 {
-    <div class="container mt-4">
+    <div class="container mt-4 p-4 border rounded bg-white">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -107,7 +100,7 @@
 
 @foreach (var comm in ViewBag.ComentariiNonGata)
 {
-    <div class="container mt-4">
+    <div class="container mt-4 p-4 border rounded bg-white">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -147,7 +140,7 @@
 
 @if (User.IsInRole("Specialist"))
 {
-    <div class="container mt-4">
+    <div class="container mt-4 p-4 border rounded bg-white">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">

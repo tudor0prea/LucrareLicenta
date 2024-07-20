@@ -77,8 +77,7 @@ namespace ArticlesApp.Controllers
             user.AllRoles = GetAllRoles();
 
 
-            if (ModelState.IsValid)
-            {
+          
                 user.UserName = newData.UserName;
                 user.Email = newData.Email;
                 user.FirstName = newData.FirstName;
@@ -98,9 +97,9 @@ namespace ArticlesApp.Controllers
                 var roleName = await _roleManager.FindByIdAsync(newRole);
                 await _userManager.AddToRoleAsync(user, roleName.ToString());
 
-                db.SaveChanges();
+            db.SaveChanges();
 
-            }
+            
             return RedirectToAction("Index");
         }
 
@@ -109,29 +108,28 @@ namespace ArticlesApp.Controllers
         public IActionResult Delete(string id)
         {
             var user = db.Users
-                         .Include("Articles")
-                         .Include("Comments")
+                         .Include("Anunturi")
                          .Include("Bookmarks")
                          .Where(u => u.Id == id)
                          .First();
 
             // Delete user articles
-            /*
-            if (user.Articles.Count > 0)
+            
+            if (user.Anunturi.Count > 0)
             {
-                foreach (var article in user.Articles)
+                foreach (var a in user.Anunturi)
                 {
-                    db.Articles.Remove(article);
+                    db.Anunturi.Remove(a);
                 }
             }
             // Delete user comments
-            if (user.Comments.Count > 0)
+/*            if (user.Comentarii.Count > 0)
             {
                 foreach (var comment in user.Comments)
                 {
                     db.Comments.Remove(comment);
                 }
-            }
+            }*/
             // Delete user bookmarks
             if (user.Bookmarks.Count > 0)
             {
@@ -140,7 +138,7 @@ namespace ArticlesApp.Controllers
                     db.Bookmarks.Remove(bookmark);
                 }
             }
-            */
+            
 
             db.ApplicationUsers.Remove(user);
             db.SaveChanges();

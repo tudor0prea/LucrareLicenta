@@ -244,7 +244,7 @@
                     <img src="@Url.Content(anunt.Image)" class="card-img-top" alt="AnuntImage">
                     <div class="card-body">
                         <h5 class="card-title">@anunt.Dealer?.Nume @anunt.Marca</h5>
-                        <p class="card-text">@anunt.Pret lei</p>
+                        <p class="card-text">@anunt.Pret EUR</p>
                         <p class="card-text">@anunt.DataFabricatiei</p>
                         @if (ViewBag.UserCurent == anunt.UserID || User.IsInRole("Admin"))
                         {

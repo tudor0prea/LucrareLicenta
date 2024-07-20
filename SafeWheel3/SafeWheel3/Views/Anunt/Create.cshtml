@@ -1,10 +1,10 @@
 ﻿@model SafeWheel3.Models.Anunt
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Anunț nou";
 }
 
-<h1 class="text-center mb-4">Create Anunt</h1>
+<h1 class="text-center mb-4">Anunț nou</h1>
 
 <form enctype="multipart/form-data" asp-controller="Anunt" asp-action="Create" class="p-4 shadow-sm bg-light rounded">
 
@@ -15,12 +15,12 @@
                 <option value="">Selectați dealerul</option>
             </select>
             <span asp-validation-for="DealerId" class="text-danger"></span>
-        </div>
+         </div>
         <div class="col-md-6 form-group">
             <label asp-for="Marca" class="form-label">Model</label>
             <input asp-for="Marca" class="form-control" placeholder="Modelul autoturismului, motorizarea, etc" />
             <span asp-validation-for="Marca" class="text-danger"></span>
-        </div>
+           </div>
     </div>
 
     <div class="row mb-3">
@@ -57,7 +57,7 @@
 
     <div class="form-group mb-3">
         <label class="form-label">Imaginea principală</label>
-        <input class="form-control" type="file" name="AnuntImage" />
+        <input class="form-control" type="file" name="AnuntImagee" />
     </div>
 
     <div class="form-group mb-4">
